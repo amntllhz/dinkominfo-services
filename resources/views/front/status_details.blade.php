@@ -14,7 +14,7 @@
      <nav class="flex mx-auto max-w-6xl mt-10">
         <ul class="flex flex-row justify-between gap-x-10 mx-auto">
           <li>
-            <a href="{{ route('front.index') }}" class="text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Layanan</a>
+            <a href="{{ route('front.index') }}" class="text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Beranda</a>
           </li>
           <li>
             <a href="{{ route('front.status') }}" class="text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Cek Status</a>

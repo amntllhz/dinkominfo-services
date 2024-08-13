@@ -14,7 +14,7 @@
      <nav class="flex mx-auto max-w-6xl mt-10">
         <ul class="flex flex-row justify-between gap-x-10 mx-auto">
           <li>
-            <a href="{{ route('front.index') }}" class="text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Layanan</a>
+            <a href="{{ route('front.index') }}" class="text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Beranda</a>
           </li>
           <li>
             <a href="{{ route('front.status') }}" class="text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Cek Status</a>
@@ -45,7 +45,7 @@
                   <div class="col-span-3">
                     <label for="receipt" class="block text-sm font-medium leading-6 text-gray-900">Resi Pengajuan <span class="text-red-500">*</span></label>
                     <div class="mt-2">
-                      <input type="text" name="receipt" id="receipt" autocomplete="receipt" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                      <input required type="text" name="receipt" id="receipt" autocomplete="receipt" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                     </div>
                   </div>
                 </div>
