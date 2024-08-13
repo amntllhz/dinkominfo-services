@@ -94,8 +94,65 @@ class RequestSubmissionResource extends Resource
                                         ->label('Keterangan Lainnya')
                                         ->columnSpan(1),
                                 ])
+                                ->visible(fn(Get $get) => $get('service_id') == 3)
+                                ->columnSpan('full'),
+
+                            Group::make()
+                                ->relationship('reqDetailVPSs')
+                                ->schema([
+                                    TextInput::make('purpose')
+                                        ->label('Tujuan')
+                                        ->required()
+                                        ->maxLength(255)
+                                        ->columnSpan(1),
+                                    Textarea::make('cpu')
+                                        ->label('CPU')
+                                        ->required()
+                                        ->columnSpan(1),
+                                    TextInput::make('ram')
+                                        ->label('RAM')
+                                        ->required()
+                                        ->maxLength(255)
+                                        ->columnSpan(1),
+                                    TextInput::make('storage')
+                                        ->label('Storage')
+                                        ->maxLength(255)
+                                        ->columnSpan(1),
+                                    FileUpload::make('document')
+                                        ->label('Documents Permohonan')
+                                        ->required()
+                                        ->columnSpan(1),
+                                    Textarea::make('add_inform')
+                                        ->label('Keterangan Lainnya')
+                                        ->columnSpan(1),
+                                ])
                                 ->visible(fn(Get $get) => $get('service_id') == 1)
                                 ->columnSpan('full'),
+
+                            Group::make()
+                                ->relationship('reqDetailHostings')
+                                ->schema([
+                                    TextInput::make('purpose')
+                                        ->label('Tujuan')
+                                        ->required()
+                                        ->maxLength(255)
+                                        ->columnSpan(1),
+                                    TextInput::make('storage')
+                                        ->label('Storage')
+                                        ->maxLength(255)
+                                        ->columnSpan(1),
+                                    FileUpload::make('document')
+                                        ->label('Documents Permohonan')
+                                        ->required()
+                                        ->columnSpan(1),
+                                    Textarea::make('add_inform')
+                                        ->label('Keterangan Lainnya')
+                                        ->columnSpan(1),
+                                ])
+                                ->visible(fn(Get $get) => $get('service_id') == 2)
+                                ->columnSpan('full'),
+
+
                             Group::make()
                                 ->relationship('reqDetailClearances')
                                 ->schema([
@@ -121,7 +178,7 @@ class RequestSubmissionResource extends Resource
                                         ->label('Keterangan Lainnya')
                                         ->columnSpan(1),
                                 ])
-                                ->visible(fn(Get $get) => $get('service_id') == 2)
+                                ->visible(fn(Get $get) => $get('service_id') == 4)
                                 ->columnSpan('full'),
 
                         ]),
@@ -145,11 +202,6 @@ class RequestSubmissionResource extends Resource
                     ->columns(2)
                     ->columnSpan('full')
                     ->skippable()
-                // Forms\Components\TextInput::make('name')
-                //     ->label('Nama')
-                //     ->required()
-                //     ->placeholder('Masukkan nama lengkap')
-                //     ->columnSpan(1),
             ]);
     }
 

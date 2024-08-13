@@ -48,4 +48,14 @@ class RequestSubmission extends Model
     {
         return $this->hasOne(ReqDetailClearance::class);
     }
+
+    public function reqDetailVPSs(): HasOne
+    {
+        return $this->hasOne(ReqDetailVPS::class);
+    }
+
+    public function reqDetailHostings(): HasOne
+    {
+        return $this->hasOne(ReqDetailHosting::class);
+    }
 }
