@@ -11,9 +11,12 @@ class ReqDetailDomain extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = [
         'request_submission_id',
-        'domain_name',
+        'site',
+        'ip',
+        'add_inform',
         'app_name',
         'document',
+        'desc_name',
     ];
 
     public function requestSubmission()

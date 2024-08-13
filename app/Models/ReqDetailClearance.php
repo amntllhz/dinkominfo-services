@@ -14,7 +14,10 @@ class ReqDetailClearance extends Model
         'request_submission_id',
         'clearance_name',
         'purpose',
-        'document',
+        'budget',
+        'req_letter',
+        'proposal',
+        'add_inform',
     ];
 
     public function requestSubmission()

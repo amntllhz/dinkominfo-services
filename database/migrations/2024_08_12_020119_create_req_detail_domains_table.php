@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('request_submission_id')->constrained('request_submissions')->cascadeOnDelete();
             $table->string('app_name')->nullable();
-            $table->string('domain_name')->nullable();
+            $table->string('desc_name')->nullable();
+            $table->string('site')->nullable();
+            $table->string('ip')->nullable();
             $table->string('document')->nullable();
+            $table->string('add_inform')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

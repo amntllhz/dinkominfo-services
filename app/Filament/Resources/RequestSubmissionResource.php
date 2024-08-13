@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\RequestSubmissionResource\Pages;
 use App\Filament\Resources\RequestSubmissionResource\RelationManagers;
 use App\Models\RequestSubmission;
+use Filament\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
@@ -12,7 +13,10 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\View;
 use Filament\Forms\Get;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -69,14 +73,25 @@ class RequestSubmissionResource extends Resource
                                         ->required()
                                         ->maxLength(255)
                                         ->columnSpan(1),
-                                    TextInput::make('domain_name')
+                                    Textarea::make('desc_name')
+                                        ->label('Deskripsi Singkat Aplikasi')
+                                        ->required()
+                                        ->columnSpan(1),
+                                    TextInput::make('site')
                                         ->label('Situs Aplikasi')
                                         ->required()
+                                        ->maxLength(255)
+                                        ->columnSpan(1),
+                                    TextInput::make('ip')
+                                        ->label('IP Address (Opsional)')
                                         ->maxLength(255)
                                         ->columnSpan(1),
                                     FileUpload::make('document')
                                         ->label('Documents Aplikasi')
                                         ->required()
+                                        ->columnSpan(1),
+                                    Textarea::make('add_inform')
+                                        ->label('Keterangan Lainnya')
                                         ->columnSpan(1),
                                 ])
                                 ->visible(fn(Get $get) => $get('service_id') == 1)
@@ -92,9 +107,19 @@ class RequestSubmissionResource extends Resource
                                         ->label('Perangkat Clearance')
                                         ->required()
                                         ->maxLength(255),
-                                    FileUpload::make('document')
-                                        ->label('Documents Aplikasi')
+                                    TextInput::make('budget')
+                                        ->label('Pagu Anggaran')
+                                        ->required()
+                                        ->maxLength(255),
+                                    FileUpload::make('req_letter')
+                                        ->label('Document Surat Permohonan')
                                         ->required(),
+                                    FileUpload::make('proposal')
+                                        ->label('Document Proposal')
+                                        ->required(),
+                                    Textarea::make('add_inform')
+                                        ->label('Keterangan Lainnya')
+                                        ->columnSpan(1),
                                 ])
                                 ->visible(fn(Get $get) => $get('service_id') == 2)
                                 ->columnSpan('full'),
@@ -119,6 +144,7 @@ class RequestSubmissionResource extends Resource
                 ])
                     ->columns(2)
                     ->columnSpan('full')
+                    ->skippable()
                 // Forms\Components\TextInput::make('name')
                 //     ->label('Nama')
                 //     ->required()
@@ -155,6 +181,37 @@ class RequestSubmissionResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('updateStatus')
+                    ->label('Update Status')
+                    ->icon('heroicon-o-pencil-square')
+                    ->color('warning')
+                    ->form(function (RequestSubmission $record) {
+                        return [
+                            Select::make('status')
+                                ->label('Update Status')
+                                ->options([
+                                    'Pending' => 'Pending',
+                                    'In Progress' => 'In Progress',
+                                    'Rejected' => 'Rejected',
+                                    'Completed' => 'Completed',
+                                ])
+                                ->default($record->status)
+                                ->required(),
+                            Textarea::make('message')
+                                ->label('Pesan Terkait Perubahan')
+                                ->placeholder('Masukkan pesan terkait perubahan status')
+                                ->default($record->message),
+                        ];
+                    })
+                    ->action(function (RequestSubmission $record, array $data): void {
+                        $record->update([
+                            'status' => $data['status'],
+                            'message' => $data['message'],
+                        ]);
+                    })
+                    ->modalHeading('Update Status Pengajuan')
+                    ->modalDescription('Status dan pesan saat ini ditampilkan di atas. Pilih status baru dan tambahkan pesan jika diperlukan.')
+                    ->modalSubmitActionLabel('Simpan Perubahan')
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

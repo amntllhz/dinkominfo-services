@@ -16,7 +16,10 @@ return new class extends Migration
             $table->foreignId('request_submission_id')->constrained('request_submissions')->cascadeOnDelete();
             $table->string('purpose')->nullable();
             $table->string('clearance_name')->nullable();
-            $table->string('document')->nullable();
+            $table->string('budget')->nullable();
+            $table->string('req_letter')->nullable();
+            $table->string('proposal')->nullable();
+            $table->string('add_inform')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -28,10 +28,18 @@ class ServiceResource extends Resource
                     ->required()
                     ->placeholder('Enter the service name')
                     ->autofocus(),
+                Forms\Components\TextInput::make('description')
+                    ->label('Service Description')
+                    ->required()
+                    ->autofocus(),
                 Forms\Components\Select::make('category_id')
                     ->label('Category')
                     ->relationship('category', 'name')
                     ->required(),
+                Forms\Components\FileUpload::make('icon')
+                    ->label('Icon')
+                    ->required()
+                    ->autofocus(),
             ]);
     }
 
@@ -52,6 +60,7 @@ class ServiceResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\DeleteAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
