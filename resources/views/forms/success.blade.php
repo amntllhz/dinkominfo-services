@@ -26,71 +26,39 @@
      </nav>
     <!-- navbar -->
 
-    <!-- Hero -->
+    <!-- FORM -->
+    
     <section class="max-w-6xl mx-auto py-12">
-        <div class="flex flex-col gap-y-2 text-center mb-10">
-            <h3 class="text-5xl text-indigo-950 font-clash font-bold">Status Pengajuan</h3>
-            <p class="text-base leading-loose text-gray-500">Kemudahan Pengajuan yang juga dilengkapi dengan Panduan Penggunaan </p>
-          </div>
-          <div class="mx-auto max-w-4xl">
+          <div class="mx-auto max-w-md">
             <div class="space-y-12">
-    @if($details)
-    <!-- Tampilkan detail jika data ditemukan -->
-    <div class="border-b border-gray-900/10 pb-12 mt-10 leading-relaxed">
-                <div class=" max-w-2xl grid grid-cols-4 gap-x-6 gap-y-2 mx-auto">
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-left">
-                      Nama
-                    </h3>
-                  </div>
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-right">
-                      {{ $details->applicant }}
-                    </h3>
-                  </div>
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-left">
-                      No. Resi
-                    </h3>
-                  </div>
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-right">
-                      {{ $details->receipt }}
-                    </h3>
-                  </div>
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-left">
-                      Jenis Layanan
-                    </h3>
-                  </div>
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-right">
-                      {{ $details->service->name }}
-                    </h3>
-                  </div>
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-left">
-                      Status
-                    </h3>
-                  </div>
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-right">
-                      {{ $details->status }}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-    @else
-    <div class="alert alert-warning">
-        <h4 class="alert-heading">Data Tidak Ditemukan</h4>
-        <p>Maaf, kami tidak dapat menemukan data submission dengan nomor receipt <strong>{{ $receipt }}</strong>.</p>
-        <hr>
-        <p class="mb-0">Mohon periksa kembali nomor receipt Anda atau hubungi customer service kami untuk bantuan lebih lanjut.</p>
-    </div>
-    @endif
-    </section>
+              
+              <!-- user -->
 
-    <!-- Hero -->
+              <div class="flex flex-col gap-y-5 bg-white rounded-2xl p-6">
+                <div class="mx-auto">
+                  <svg width="75" height="75" viewBox="0 0 75 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M31.5701 52.0598L17.25 37.7363L22.0222 32.964L31.5701 42.5085L50.6591 23.4161L55.4347 28.1918L31.5701 52.0598Z" fill="#640EF1"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.375 37.5C0.375 16.9969 16.9969 0.375 37.5 0.375C58.0031 0.375 74.625 16.9969 74.625 37.5C74.625 58.0031 58.0031 74.625 37.5 74.625C16.9969 74.625 0.375 58.0031 0.375 37.5ZM37.5 67.875C33.5111 67.875 29.5613 67.0893 25.876 65.5628C22.1907 64.0364 18.8422 61.7989 16.0216 58.9784C13.2011 56.1578 10.9636 52.8093 9.43716 49.124C7.91067 45.4387 7.125 41.4889 7.125 37.5C7.125 33.5111 7.91067 29.5613 9.43716 25.876C10.9636 22.1907 13.2011 18.8422 16.0216 16.0216C18.8422 13.2011 22.1907 10.9636 25.876 9.43716C29.5613 7.91067 33.5111 7.125 37.5 7.125C45.556 7.125 53.2819 10.3252 58.9784 16.0216C64.6748 21.718 67.875 29.444 67.875 37.5C67.875 45.556 64.6748 53.2819 58.9784 58.9784C53.2819 64.6748 45.556 67.875 37.5 67.875Z" fill="#640EF1"/>
+                  </svg>   
+                </div>               
+                  
+                <div class="flex flex-col gap-y-1 text-center">
+                  <h3 class="font-bold text-lg text-violet-700">Pengajuan Berhasil</h3>
+                  <p class="text-sm font-semibold leading-normal text-indigo-950">Pengajuan {{ $submission->service->name }}</p>
+                  <p class="text-sm leading-normal text-gray-500">No Resi : {{ $submission->receipt }}</p>
+                </div>
+                <div class="mt-2 flex items-center justify-center gap-x-6">
+                  <a href="{{ route('front.index') }}">
+                      <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Beranda</button>
+                  </a>
+                  <a href="{{ route('front.status') }}">
+                      <button type="submit" class="rounded-full bg-violet-700 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cek status</button>
+                    </a>
+                </div>
+              </div>       
+          </div>
+    </section>
+    <!-- FORM -->
 
     <!-- footer -->
      <section class="w-screen bg-[#070C29] mt-10 p-8">
@@ -254,5 +222,6 @@
       </div>
      </section>
     <!-- footer -->
+
 </body>
 </html>

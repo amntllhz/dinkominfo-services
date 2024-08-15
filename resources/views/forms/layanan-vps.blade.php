@@ -33,7 +33,11 @@
             <h3 class="text-5xl text-indigo-950 font-clash font-bold">Pengajuan VPS</h3>
             <p class="text-base leading-loose text-gray-500">Kemudahan Pengajuan yang juga dilengkapi dengan Panduan Penggunaan </p>
           </div>
-          <form class="mx-auto max-w-4xl">
+
+
+          <form method="POST" action="{{ route('front.service.form.submitvps') }}" class="mx-auto max-w-4xl">
+          {{-- <form method="POST" action="{{ route('front.service.form.submit') }}" class="mx-auto max-w-4xl"> --}}
+            @csrf
             <div class="space-y-12">
               
               <!-- User -->
@@ -44,16 +48,16 @@
           
                 <div class="mt-10 grid grid-cols-6 gap-x-6 gap-y-8">
                   <div class="col-span-3">
-                    <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Nama <span class="text-red-500">*</span></label>
+                    <label for="applicant" class="block text-sm font-medium leading-6 text-gray-900">Nama Pemohon<span class="text-red-500">*</span></label>
                     <div class="mt-2">
-                      <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                      <input type="text" name="applicant" id="applicant" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                     </div>
                   </div>
           
                   <div class="col-span-3">
-                    <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Nomor Induk Pegawai (NIP) <span class="text-red-500">*</span></label>
+                    <label for="instansi" class="block text-sm font-medium leading-6 text-gray-900">Instansi <span class="text-red-500">*</span></label>
                     <div class="mt-2">
-                      <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                      <input type="text" name="instansi" id="instansi" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                     </div>
                   </div>
           
@@ -65,36 +69,13 @@
                   </div>
 
                   <div class="col-span-3">
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Nomor Telepon <span class="text-red-500">*</span></label>
+                    <label for="phone" class="block text-sm font-medium leading-6 text-gray-900">Nomor Telepon <span class="text-red-500">*</span></label>
                     <div class="mt-2">
-                      <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                      <input id="phone" name="phone" type="text" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                     </div>
                   </div>
           
-                  <div class="col-span-2">
-                    <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Instansi <span class="text-red-500">*</span></label>
-                    <div class="mt-2">
-                      <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-violet-700">
-                        <option>DINKOMINFO</option>
-                        <option>DISHUB</option>
-                        <option>BAPPERIDA</option>
-                      </select>
-                    </div>
-                  </div>
-          
-                  <div class="col-span-2">
-                    <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Alamat Kantor <span class="text-red-500">*</span></label>
-                    <div class="mt-2">
-                      <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
-                    </div>
-                  </div>
-          
-                  <div class="col-span-2">
-                    <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Kode Pos <span class="text-red-500">*</span></label>
-                    <div class="mt-2">
-                      <input type="text" name="city" id="city" autocomplete="address-level2" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
               
@@ -106,48 +87,37 @@
           
                 <div class="mt-10 grid grid-cols-6 gap-x-6 gap-y-8">
                     <div class="col-span-3">
-                      <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">CPU <span class="text-red-500">*</span></label>
+                      <label for="cpu" class="block text-sm font-medium leading-6 text-gray-900">CPU <span class="text-red-500">*</span></label>
                       <div class="mt-2">
-                        <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                        <input type="text" name="cpu" id="cpu"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                       </div>
                     </div>
 
                     <div class="col-span-3">
-                        <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">RAM <span class="text-red-500">*</span></label>
+                        <label for="ram" class="block text-sm font-medium leading-6 text-gray-900">RAM <span class="text-red-500">*</span></label>
                         <div class="mt-2">
-                          <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                          <input type="text" name="ram" id="ram" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                         </div>
                     </div>
 
                     <div class="col-span-3">
-                      <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Storage <span class="text-red-500">*</span></label>
+                      <label for="storage" class="block text-sm font-medium leading-6 text-gray-900">Storage <span class="text-red-500">*</span></label>
                       <div class="mt-2">
-                        <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-violet-700">
-                          <option>100 GB</option>
-                          <option>200 GB</option>
-                          <option>300 GB</option>
-                        </select>
+                        <input type="text" name="storage" id="storage"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                       </div>
                     </div>
           
-                  <div class="col-span-full">
-                    <label for="about" class="block text-sm font-medium leading-6 text-gray-900">Include Aplikasi <span class="text-red-500">*</span></label>
-                    <div class="mt-2">
-                      <textarea id="about" name="about" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 "></textarea>
-                    </div>
-                    <p class="mt-3 text-sm leading-6 text-gray-600">Tuliskan deskripsi singkat aplikasi</p>
-                  </div>
 
                   <div class="col-span-full">
-                    <label for="about" class="block text-sm font-medium leading-6 text-gray-900">Tujuan Pengajuan <span class="text-red-500">*</span></label>
+                    <label for="purpose" class="block text-sm font-medium leading-6 text-gray-900">Tujuan Pengajuan <span class="text-red-500">*</span></label>
                     <div class="mt-2">
-                      <textarea id="about" name="about" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 "></textarea>
+                      <textarea id="purpose" name="purpose" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 "></textarea>
                     </div>
                     <p class="mt-3 text-sm leading-6 text-gray-600">Tuliskan deskripsi singkat aplikasi</p>
                   </div>
           
                   <div class="col-span-full">
-                    <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">Surat Permohonan <span class="text-red-500">*</span></label>
+                    <label for="document" class="block text-sm font-medium leading-6 text-gray-900">Surat Permohonan <span class="text-red-500">*</span></label>
                     <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                       <div class="text-center">
                         <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -179,7 +149,7 @@
           
             <div class="mt-6 flex items-center justify-end gap-x-6">
               <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
-              <button type="submit" class="rounded-full bg-violet-700 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+              <button type="submit" id="saveButton" class="rounded-full bg-violet-700 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
             </div>
           </form>
     </section>
@@ -347,5 +317,21 @@
       </div>
      </section>
     <!-- footer -->
+
+    <script>
+      const checkbox = document.getElementById('comments');
+      const saveButton = document.getElementById('saveButton');
+
+      checkbox.addEventListener('change', function() {
+        saveButton.disabled = !this.checked;
+        if (this.checked) {
+          saveButton.classList.remove('opacity-50', 'cursor-not-allowed');
+          saveButton.classList.add('hover:bg-indigo-950');
+        } else {
+          saveButton.classList.add('opacity-50', 'cursor-not-allowed');
+          saveButton.classList.remove('hover:bg-indigo-950');
+        }
+      });
+    </script>
 </body>
 </html>
