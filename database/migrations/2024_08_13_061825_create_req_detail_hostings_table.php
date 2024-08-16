@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('request_submission_id')->constrained('request_submissions')->cascadeOnDelete();
             $table->string('storage')->nullable();
+            $table->string('cpu')->nullable();
+            $table->string('ram')->nullable();
             $table->string('purpose')->nullable();
             $table->string('document')->nullable();
             $table->string('add_inform')->nullable();

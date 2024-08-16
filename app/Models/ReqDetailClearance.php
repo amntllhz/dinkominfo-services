@@ -12,13 +12,24 @@ class ReqDetailClearance extends Model
 
     protected $fillable = [
         'request_submission_id',
-        'clearance_name',
         'purpose',
-        'budget',
-        'req_letter',
-        'proposal',
+        'documents',
         'add_inform',
     ];
+
+    protected $casts = [
+        'documents' => 'array',
+    ];
+
+    public function getDocumentsAttribute($value)
+    {
+        return json_decode($value, true);
+    }
+
+    public function setDocumentsAttribute($value)
+    {
+        $this->attributes['documents'] = json_encode($value);
+    }
 
     public function requestSubmission()
     {

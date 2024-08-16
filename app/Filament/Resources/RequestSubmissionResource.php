@@ -105,7 +105,11 @@ class RequestSubmissionResource extends Resource
                                         ->required()
                                         ->maxLength(255)
                                         ->columnSpan(1),
-                                    Textarea::make('cpu')
+                                    TextInput::make('os')
+                                        ->label('OS')
+                                        ->required()
+                                        ->columnSpan(1),
+                                    TextInput::make('cpu')
                                         ->label('CPU')
                                         ->required()
                                         ->columnSpan(1),
@@ -116,6 +120,7 @@ class RequestSubmissionResource extends Resource
                                         ->columnSpan(1),
                                     TextInput::make('storage')
                                         ->label('Storage')
+                                        ->required()
                                         ->maxLength(255)
                                         ->columnSpan(1),
                                     FileUpload::make('document')
@@ -156,24 +161,14 @@ class RequestSubmissionResource extends Resource
                             Group::make()
                                 ->relationship('reqDetailClearances')
                                 ->schema([
-                                    TextInput::make('purpose')
+                                    TextArea::make('purpose')
                                         ->label('Tujuan Pengadaan Clearance')
                                         ->required()
                                         ->maxLength(255),
-                                    TextInput::make('clearance_name')
-                                        ->label('Perangkat Clearance')
+                                    FileUpload::make('documents')
+                                        ->label('Document Surat Permohonan, Proposal, dan Dokumen Pendukung')
                                         ->required()
-                                        ->maxLength(255),
-                                    TextInput::make('budget')
-                                        ->label('Pagu Anggaran')
-                                        ->required()
-                                        ->maxLength(255),
-                                    FileUpload::make('req_letter')
-                                        ->label('Document Surat Permohonan')
-                                        ->required(),
-                                    FileUpload::make('proposal')
-                                        ->label('Document Proposal')
-                                        ->required(),
+                                        ->multiple(),
                                     Textarea::make('add_inform')
                                         ->label('Keterangan Lainnya')
                                         ->columnSpan(1),

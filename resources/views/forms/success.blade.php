@@ -46,6 +46,8 @@
                   <h3 class="font-bold text-lg text-violet-700">Pengajuan Berhasil</h3>
                   <p class="text-sm font-semibold leading-normal text-indigo-950">Pengajuan {{ $submission->service->name }}</p>
                   <p class="text-sm leading-normal text-gray-500">No Resi : {{ $submission->receipt }}</p>
+
+                  <p class="text-sm leading-normal text-gray-500">Status : {{ $submission->status }}</p>
                 </div>
                 <div class="mt-2 flex items-center justify-center gap-x-6">
                   <a href="{{ route('front.index') }}">

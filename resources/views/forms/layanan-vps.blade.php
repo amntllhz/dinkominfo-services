@@ -35,12 +35,9 @@
           </div>
 
 
-          <form method="POST" action="{{ route('front.service.form.submitvps') }}" class="mx-auto max-w-4xl">
-          {{-- <form method="POST" action="{{ route('front.service.form.submit') }}" class="mx-auto max-w-4xl"> --}}
+          <form method="POST" action="{{ route('form.submitvps') }}" enctype="multipart/form-data" class="mx-auto max-w-4xl">
             @csrf
             <div class="space-y-12">
-              
-              <!-- User -->
 
               <div class="border-b border-gray-900/10 pb-12">
                 <h2 class="text-lg font-bold leading-7 text-violet-700">Data Pemohon</h2>
@@ -50,28 +47,28 @@
                   <div class="col-span-3">
                     <label for="applicant" class="block text-sm font-medium leading-6 text-gray-900">Nama Pemohon<span class="text-red-500">*</span></label>
                     <div class="mt-2">
-                      <input type="text" name="applicant" id="applicant" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                      <input type="text" name="applicant" id="applicant" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                     </div>
                   </div>
           
                   <div class="col-span-3">
                     <label for="instansi" class="block text-sm font-medium leading-6 text-gray-900">Instansi <span class="text-red-500">*</span></label>
                     <div class="mt-2">
-                      <input type="text" name="instansi" id="instansi" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                      <input type="text" name="instansi" id="instansi" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                     </div>
                   </div>
           
                   <div class="col-span-3">
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email <span class="text-red-500">*</span></label>
                     <div class="mt-2">
-                      <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                      <input id="email" name="email" type="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                     </div>
                   </div>
 
                   <div class="col-span-3">
                     <label for="phone" class="block text-sm font-medium leading-6 text-gray-900">Nomor Telepon <span class="text-red-500">*</span></label>
                     <div class="mt-2">
-                      <input id="phone" name="phone" type="text" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                      <input id="phone" name="phone" type="text" inputmode="numeric" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                     </div>
                   </div>
           
@@ -89,55 +86,56 @@
                     <div class="col-span-3">
                       <label for="cpu" class="block text-sm font-medium leading-6 text-gray-900">CPU <span class="text-red-500">*</span></label>
                       <div class="mt-2">
-                        <input type="text" name="cpu" id="cpu"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                        <input type="text" name="cpu" id="cpu"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 " required>
                       </div>
                     </div>
 
                     <div class="col-span-3">
                         <label for="ram" class="block text-sm font-medium leading-6 text-gray-900">RAM <span class="text-red-500">*</span></label>
                         <div class="mt-2">
-                          <input type="text" name="ram" id="ram" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                          <input type="text" name="ram" id="ram" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 " required>
                         </div>
                     </div>
 
                     <div class="col-span-3">
                       <label for="storage" class="block text-sm font-medium leading-6 text-gray-900">Storage <span class="text-red-500">*</span></label>
                       <div class="mt-2">
-                        <input type="text" name="storage" id="storage"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                        <input type="text" name="storage" id="storage"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 " required>
                       </div>
+                    </div>
+
+                    <div class="col-span-3">
+                        <label for="os" class="block text-sm font-medium leading-6 text-gray-900">Operating System <span class="text-red-500">*</span></label>
+                        <div class="mt-2">
+                          <input type="text" name="os" id="os" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 " required>
+                        </div>
                     </div>
           
 
                   <div class="col-span-full">
                     <label for="purpose" class="block text-sm font-medium leading-6 text-gray-900">Tujuan Pengajuan <span class="text-red-500">*</span></label>
                     <div class="mt-2">
-                      <textarea id="purpose" name="purpose" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 "></textarea>
+                      <textarea id="purpose" name="purpose" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 " required></textarea>
                     </div>
                     <p class="mt-3 text-sm leading-6 text-gray-600">Tuliskan deskripsi singkat aplikasi</p>
+                  </div>
+
+                  <div class="col-span-full">
+                    <label for="add_inform" class="block text-sm font-medium leading-6 text-gray-900">Informasi Tambahan</label>
+                    <div class="mt-2">
+                      <textarea id="add_inform" name="add_inform" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 " required></textarea>
+                    </div>
+                    <p class="mt-3 text-sm leading-6 text-gray-600">Tuliskan keterangan lainnya (opsional)</p>
                   </div>
           
                   <div class="col-span-full">
                     <label for="document" class="block text-sm font-medium leading-6 text-gray-900">Surat Permohonan <span class="text-red-500">*</span></label>
-                    <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                      <div class="text-center">
-                        <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
-                        </svg>
-                        <div class="mt-4 flex text-sm leading-6 text-gray-600">
-                          <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-violet-700 focus-within:ring-offset-2 hover:text-indigo-500">
-                            <span>Upload a file</span>
-                            <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                          </label>
-                          <p class="pl-1">or drag and drop</p>
-                        </div>
-                        <p class="text-xs leading-5 text-gray-600">DOCX, PDF up to 10MB</p>
-                      </div>
-                    </div>
+                    <input class="block w-full rounded-md border-0 p-6 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 " name="document" id="document" type="file" required>
                   </div>
 
                   <div class="mx-auto col-span-full">
                     <div class="flex flex-row gap-x-4 h-6 items-center">
-                      <input id="comments" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-violet-700 focus:ring-violet-700">
+                      <input id="comments" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-violet-700 focus:ring-violet-700" required>
                       <label for="comments" class="text-sm font-medium text-gray-900">Saya Menyetujui Syarat & Ketentuan yang berlaku</label>
                     </div>
                     <div class="text-sm leading-6">
@@ -318,20 +316,5 @@
      </section>
     <!-- footer -->
 
-    <script>
-      const checkbox = document.getElementById('comments');
-      const saveButton = document.getElementById('saveButton');
-
-      checkbox.addEventListener('change', function() {
-        saveButton.disabled = !this.checked;
-        if (this.checked) {
-          saveButton.classList.remove('opacity-50', 'cursor-not-allowed');
-          saveButton.classList.add('hover:bg-indigo-950');
-        } else {
-          saveButton.classList.add('opacity-50', 'cursor-not-allowed');
-          saveButton.classList.remove('hover:bg-indigo-950');
-        }
-      });
-    </script>
 </body>
 </html>

@@ -13,6 +13,7 @@ class ReqDetailVPS extends Model
     protected $fillable = [
         'request_submission_id',
         'storage',
+        'os',
         'cpu',
         'ram',
         'purpose',

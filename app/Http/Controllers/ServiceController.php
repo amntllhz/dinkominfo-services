@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RequestClearance;
+use App\Http\Requests\RequestVPS;
 use App\Models\ReqDetailVPS;
 use App\Models\RequestSubmission;
 use App\Models\Service;
@@ -27,48 +29,160 @@ class ServiceController extends Controller
         return view('forms.default', compact('service'));
     }
 
-    public function handleFormSubmission(Request $request)
+
+    public function handleFormSubmissionVPS(RequestVPS $request)
     {
-        $validated = $request->validate([
-            'applicant' => 'required|string|max:255',
-            'instansi' => 'required|string|max:255',
-            'email' => 'required|email',
-            'phone' => 'required|numeric',
-            'cpu' => 'required|string|max:255',
-            'ram' => 'required|string|max:255',
-            'storage' => 'required|string|max:255',
-            'purpose' => 'required|string|max:255',
-            // 'about' => 'required|string',
-            // 'file-upload' => 'required|file|mimes:docx,pdf|max:10240',
-            // 'comments' => 'accepted', // Checkbox harus dicentang
-        ]);
+        $applicant = $request->applicant;
+        $instansi = $request->instansi;
+        $email = $request->email;
+        $phone = $request->phone;
+        $cpu = $request->cpu;
+        $ram = $request->ram;
+        $storage = $request->storage;
+        $os = $request->os;
+        $purpose = $request->purpose;
+        $add_inform = $request->add_inform;
+        $service_id = 1;
 
-        // $service = Service::where('slug', $request->slug)->firstOrFail();
+        $submission_id = null;
 
-        $submission = new RequestSubmission();
-        // $submissionDetail = new ReqDetailVPS();
+        DB::transaction(function () use ($request, $applicant, $instansi, $email, $phone, $cpu, $ram, $storage, $purpose, $os, $add_inform, $service_id, &$submission_id) {
+            $validated = $request->validated();
 
-        $submission->service_id = 1;
-        $submission->applicant = $validated['applicant'];
-        $submission->instansi = $validated['instansi'];
-        $submission->email = $validated['email'];
-        $submission->phone = $validated['phone'];
+            $validated['applicant'] = $applicant;
+            $validated['instansi'] = $instansi;
+            $validated['email'] = $email;
+            $validated['phone'] = $phone;
+            $validated['service_id'] = $service_id;
 
-        $submission->save();
+            $newRequestSubmission = RequestSubmission::create($validated);
+            $submission_id = $newRequestSubmission->id;
 
-        $submission->reqDetailVPSs()->create([
-            'request_submission_id' => $submission->id,
-            'storage' => $validated['storage'],
-            'cpu' => $validated['cpu'],
-            'ram' => $validated['ram'],
-            'purpose' => $validated['purpose'],
-            'document' => null, // Atur default null
-            'add_inform' => null,
-        ]);
+            $validated['request_submission_id'] = $submission_id;
+            $validated['cpu'] = $cpu;
+            $validated['ram'] = $ram;
+            $validated['storage'] = $storage;
+            $validated['os'] = $os;
+            $validated['purpose'] = $purpose;
+            $validated['add_inform'] = $add_inform;
+            if ($request->hasFile('document')) {
+                $docPath = $request->file('document')->store('documents/vps', 'public');
+                $validated['document'] = $docPath;
+            }
 
-        $submission->save();
+            $newRequestSubmission->reqDetailVPSs()->create($validated);
+        });
+        return redirect()->route('forms.success', $submission_id);
+    }
 
+    // public function handleFormSubmissionClearance(RequestClearance $request)
+    // {
+    //     $applicant = $request->applicant;
+    //     $instansi = $request->instansi;
+    //     $email = $request->email;
+    //     $phone = $request->phone;
+    //     $purpose = $request->purpose;
+    //     $add_inform = $request->add_inform;
+    //     $service_id = 4;
+
+    //     $submission_id = null;
+
+    //     DB::transaction(function () use ($request, $applicant, $instansi, $email, $phone, $purpose,  $add_inform, $service_id, &$submission_id) {
+    //         $validated = $request->validated();
+
+    //         $validated['applicant'] = $applicant;
+    //         $validated['instansi'] = $instansi;
+    //         $validated['email'] = $email;
+    //         $validated['phone'] = $phone;
+    //         $validated['service_id'] = $service_id;
+
+    //         $newRequestSubmission = RequestSubmission::create($validated);
+    //         $submission_id = $newRequestSubmission->id;
+
+    //         $validated['request_submission_id'] = $submission_id;
+    //         $validated['purpose'] = $purpose;
+    //         $validated['add_inform'] = $add_inform;
+
+    //         // if ($request->hasFile('documents')) {
+    //         //     $files = $request->file('documents');
+    //         //     $docPaths = [];
+    //         //     foreach ($files as $file) {
+    //         //         $docPath = $file->store('documents/clearance', 'public');
+    //         //         $docPaths[] = $docPath;
+    //         //     }
+
+    //         //     $validated['documents'] = $docPaths;
+    //         // }
+
+    //         // if ($request->hasFile('documents')) {
+    //         //     $files = $request->file('documents');
+    //         //     $docPath = [];
+    //         //     foreach ($files as $file) {
+    //         //         $docPath = $file->store('documents/clearance', 'public');
+    //         //         $validated['documents'][] = $docPath;
+    //         //     }
+    //         // }
+
+
+
+
+    //         $newRequestSubmission->reqDetailClearances()->create($validated);
+    //         // dd($newRequestSubmission);
+    //     });
+    //     return redirect()->route('forms.success', $submission_id);
+    // }
+
+    public function handleFormSubmissionClearance(RequestClearance $request)
+    {
+        $submission_id = null;
+
+        DB::transaction(function () use ($request, &$submission_id) {
+            $validated = $request->validated();
+
+            $newRequestSubmission = RequestSubmission::create([
+                'applicant' => $validated['applicant'],
+                'instansi' => $validated['instansi'],
+                'email' => $validated['email'],
+                'phone' => $validated['phone'],
+                'service_id' => 4, // Assuming 4 is the service_id for clearance
+            ]);
+
+            $submission_id = $newRequestSubmission->id;
+
+            $clearanceData = [
+                'request_submission_id' => $submission_id,
+                'purpose' => $validated['purpose'],
+                'add_inform' => $validated['add_inform'],
+            ];
+
+            // Handle multiple file uploads
+            if ($request->hasFile('documents')) {
+                $documentPaths = [];
+                foreach ($request->file('documents') as $document) {
+                    $path = $document->store('documents/clearance', 'public');
+                    $documentPaths[] = $path;
+                }
+                // Store file paths as JSON array
+                $clearanceData['documents'] = $documentPaths;
+            }
+
+            // dd($clearanceData);
+
+
+
+
+
+            $newRequestSubmission->reqDetailClearances()->create($clearanceData);
+        });
+
+
+
+        return redirect()->route('forms.success', $submission_id);
+    }
+
+    public function success($submission_id)
+    {
+        $submission = RequestSubmission::findOrFail($submission_id);
         return view('forms.success', compact('submission'));
-        // return redirect()->route('front.index')->with('success', 'Permintaan layanan berhasil dikirim');
     }
 }

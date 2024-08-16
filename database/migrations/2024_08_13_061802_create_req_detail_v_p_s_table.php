@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('req_detail_v_p_s', function (Blueprint $table) {
             $table->id();
             $table->foreignId('request_submission_id')->constrained('request_submissions')->cascadeOnDelete();
+            $table->string('os')->nullable();
             $table->string('storage')->nullable();
             $table->string('cpu')->nullable();
             $table->string('ram')->nullable();
