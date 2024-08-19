@@ -11,7 +11,7 @@ class FrontController extends Controller
     public function index()
     {
         $services = Service::all();
-        return view('front.index', compact('services'));
+        return view('front.index2', compact('services'));
     }
 
     public function cekStatus()

@@ -27,135 +27,98 @@
     <!-- navbar -->
 
     <!-- FORM -->
-    <section class="max-w-6xl mx-auto py-12">
+    <section class="max-w-6xl mx-auto py-12 md:max-w-lg sm:max-w-xs">
         <div class="flex flex-col gap-y-2 text-center mb-10">
-            <h3 class="text-5xl text-indigo-950 font-clash font-bold">Pengajuan Domain</h3>
-            <p class="text-base leading-loose text-gray-500">Kemudahan Pengajuan yang juga dilengkapi dengan Panduan Penggunaan </p>
+            <h3 class="text-5xl text-indigo-950 font-clash font-bold sm:text-3xl">Pengajuan Domain</h3>
+            <p class="text-base leading-loose text-gray-500 sm:text-sm">Kemudahan Pengajuan yang juga dilengkapi dengan Panduan Penggunaan </p>
           </div>
-          <form class="mx-auto max-w-4xl">
+          <form method="POST" action="{{ route('form.submitdomain') }}" enctype="multipart/form-data" class="mx-auto max-w-4xl">
+          @csrf
             <div class="space-y-12">
               
-              <!-- User -->
+              <!-- user -->
 
               <div class="border-b border-gray-900/10 pb-12">
                 <h2 class="text-lg font-bold leading-7 text-violet-700">Data Pemohon</h2>
                 <p class="mt-1 text-sm leading-6 text-gray-600">Form dengan tanda ( <span class="text-red-500">*</span> ) wajib diisi</p>
           
-                <div class="mt-10 grid grid-cols-6 gap-x-6 gap-y-8">
-                  <div class="col-span-3">
-                    <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Nama <span class="text-red-500">*</span></label>
+                <div class="mt-10 grid grid-cols-6 sm:grid-cols-1 gap-x-6 gap-y-8 sm:gap-y-4">
+                  <div class="col-span-3 sm:col-span-1">
+                    <label for="applicant" class="block text-sm font-medium leading-6 text-gray-900">Nama <span class="text-red-500">*</span></label>
                     <div class="mt-2">
-                      <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                      <input type="text" name="applicant" id="applicant" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                     </div>
                   </div>
           
-                  <div class="col-span-3">
-                    <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Nomor Induk Pegawai (NIP) <span class="text-red-500">*</span></label>
+                  <div class="col-span-3 sm:col-span-1">
+                    <label for="instansi" class="block text-sm font-medium leading-6 text-gray-900">Instansi <span class="text-red-500">*</span></label>
                     <div class="mt-2">
-                      <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                      <input type="text" name="instansi" id="instansi" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                     </div>
                   </div>
           
-                  <div class="col-span-3">
+                  <div class="col-span-3 sm:col-span-1">
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email <span class="text-red-500">*</span></label>
                     <div class="mt-2">
-                      <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                      <input id="email" name="email" type="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                     </div>
                   </div>
 
-                  <div class="col-span-3">
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Nomor Telepon <span class="text-red-500">*</span></label>
+                  <div class="col-span-3 sm:col-span-1">
+                    <label for="phone" class="block text-sm font-medium leading-6 text-gray-900">Nomor Telepon <span class="text-red-500">*</span></label>
                     <div class="mt-2">
-                      <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                      <input id="phone" name="phone" type="text" inputmode="numeric" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                     </div>
-                  </div>
-          
-                  <div class="col-span-2">
-                    <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Instansi <span class="text-red-500">*</span></label>
-                    <div class="mt-2">
-                      <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-violet-700">
-                        <option>DINKOMINFO</option>
-                        <option>DISHUB</option>
-                        <option>BAPPERIDA</option>
-                      </select>
-                    </div>
-                  </div>
-          
-                  <div class="col-span-2">
-                    <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Alamat Kantor <span class="text-red-500">*</span></label>
-                    <div class="mt-2">
-                      <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
-                    </div>
-                  </div>
-          
-                  <div class="col-span-2">
-                    <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Kode Pos <span class="text-red-500">*</span></label>
-                    <div class="mt-2">
-                      <input type="text" name="city" id="city" autocomplete="address-level2" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
-                    </div>
-                  </div>
+                  </div>          
                 </div>
               </div>
               
-              <!-- Data -->
+              <!-- data -->
 
               <div class="pb-12">
                 <h2 class="text-lg font-bold leading-7 text-violet-700">Data Pengajuan</h2>
                 <p class="mt-1 text-sm leading-6 text-gray-600">Form dengan tanda ( <span class="text-red-500">*</span> ) wajib diisi</p></p>
           
-                <div class="mt-10 grid grid-cols-6 gap-x-6 gap-y-8">
-                    <div class="col-span-3">
-                      <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Nama Aplikasi <span class="text-red-500">*</span></label>
+                <div class="mt-10 grid grid-cols-6 sm:grid-cols-1 gap-x-6 gap-y-8 sm:gap-y-4">
+                    <div class="col-span-3 sm:col-span-1">
+                      <label for="app_name" class="block text-sm font-medium leading-6 text-gray-900">Nama Aplikasi <span class="text-red-500">*</span></label>
                       <div class="mt-2">
-                        <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                        <input type="text" name="app_name" id="app_name" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                       </div>
                     </div>
 
-                    <div class="col-span-3">
-                        <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Nama Domain <span class="text-red-500">*</span></label>
+                    <div class="col-span-3 sm:col-span-1">
+                        <label for="site" class="block text-sm font-medium leading-6 text-gray-900">Nama Domain <span class="text-red-500">*</span></label>
                         <div class="mt-2">
-                          <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                          <input type="text" name="site" id="site" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                         </div>
                     </div>
 
-                    <div class="col-span-3">
-                      <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">IP Address <span class="text-red-500">*</span></label>
+                    <div class="col-span-3 sm:col-span-1">
+                      <label for="ip" class="block text-sm font-medium leading-6 text-gray-900">IP Address</label>
                       <div class="mt-2">
-                        <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                        <input type="text" name="ip" id="ip" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                       </div>
                     </div>
           
                   <div class="col-span-full">
-                    <label for="about" class="block text-sm font-medium leading-6 text-gray-900">Deskripsi Singkat Aplikasi <span class="text-red-500">*</span></label>
+                    <label for="desc_name" class="block text-sm font-medium leading-6 text-gray-900">Deskripsi Singkat Aplikasi <span class="text-red-500">*</span></label>
                     <div class="mt-2">
-                      <textarea id="about" name="about" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 "></textarea>
+                      <textarea id="desc_name" required name="desc_name" required rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 "></textarea>
                     </div>
                     <p class="mt-3 text-sm leading-6 text-gray-600">Tuliskan deskripsi singkat aplikasi</p>
                   </div>
           
                   <div class="col-span-full">
-                    <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">Surat Permohonan <span class="text-red-500">*</span></label>
-                    <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                      <div class="text-center">
-                        <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
-                        </svg>
-                        <div class="mt-4 flex text-sm leading-6 text-gray-600">
-                          <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-violet-700 focus-within:ring-offset-2 hover:text-indigo-500">
-                            <span>Upload a file</span>
-                            <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                          </label>
-                          <p class="pl-1">or drag and drop</p>
-                        </div>
-                        <p class="text-xs leading-5 text-gray-600">DOCX, PDF up to 10MB</p>
-                      </div>
-                    </div>
+                    <label for="document" class="block text-sm font-medium leading-6 text-gray-900">Surat Permohonan <span class="text-red-500">*</span></label>
+                    <input class="block w-full rounded-md border-0 p-6 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 " name="document" id="document" type="file" required>
+                  
                   </div>
 
                   <div class="mx-auto col-span-full">
                     <div class="flex flex-row gap-x-4 h-6 items-center">
-                      <input id="comments" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-violet-700 focus:ring-violet-700">
-                      <label for="comments" class="text-sm font-medium text-gray-900">Saya Menyetujui Syarat & Ketentuan yang berlaku</label>
+                      <input id="comments" name="comments" type="checkbox" required class="h-4 w-4 rounded border-gray-300 text-violet-700 focus:ring-violet-700">
+                      <label for="comments" class="text-sm font-medium text-gray-900 sm:text-xs">Saya Menyetujui Syarat & Ketentuan yang berlaku</label>
                     </div>
                     <div class="text-sm leading-6">
                       
@@ -163,22 +126,25 @@
                   </div>
                 </div>
               </div>
-          
+              
+              <!-- button -->
+
             <div class="mt-6 flex items-center justify-end gap-x-6">
               <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
-              <button type="submit" class="rounded-full bg-violet-700 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+              <button type="submit" class="rounded-full bg-violet-700 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
             </div>
           </form>
     </section>
     <!-- FORM -->
 
-    <!-- footer -->
+
+        <!-- footer -->
      <section class="w-screen bg-[#070C29] mt-10 p-8">
-      <div class="max-w-6xl mx-auto py-10 grid grid-cols-5 gap-x-10">
+      <div class="max-w-6xl mx-auto py-10 grid grid-cols-5 gap-x-10 sm:max-w-sm sm:grid-cols-1 sm:gap-y-8">
 
         <!-- company -->
 
-        <div class=" flex flex-col col-span-2 gap-y-7">
+        <div class=" flex flex-col col-span-2 gap-y-7 sm:col-span-1">
           <svg width="179" height="42" viewBox="0 0 179 42" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_398_102)">
             <path d="M6.94377 26.5092L6.42839 25.7757C5.37484 24.2805 4.62388 22.5938 4.21779 20.8105C3.72872 18.6576 3.74732 16.4205 4.27209 14.2761L4.35196 13.9567L4.61391 13.7523C6.85927 12.0001 9.42848 10.7082 12.1742 9.95064C15.9906 8.90024 20.02 8.90024 23.8363 9.95064C26.5802 10.7088 29.1476 12.0007 31.3914 13.7523L31.6533 13.9567L31.7332 14.2761C32.2579 16.4205 32.2765 18.6576 31.7875 20.8105C31.3814 22.5938 30.6304 24.2805 29.5769 25.7757L29.0615 26.5092L28.2948 26.044C25.1915 24.1657 21.633 23.1728 18.0053 23.1728C14.3776 23.1728 10.8191 24.1657 7.71578 26.044L6.94377 26.5092ZM18 21.264C21.6634 21.2578 25.2688 22.1789 28.4801 23.9414C29.1439 22.8395 29.6277 21.6389 29.9134 20.3846C30.3105 18.6335 30.3199 16.8168 29.941 15.0617C27.961 13.5656 25.716 12.4571 23.3242 11.7945C19.8423 10.8364 16.1662 10.8364 12.6843 11.7945C10.2914 12.455 8.04491 13.5617 6.06315 15.0564C5.6841 16.8115 5.69355 18.6282 6.09083 20.3793C6.37626 21.6339 6.8601 22.835 7.5241 23.9372C10.7349 22.1777 14.3385 21.2581 18 21.264Z" fill="#640EF1"/>
@@ -195,17 +161,16 @@
             </clipPath>
             </defs>
             </svg>            
-          <p class="text-base leading-loose text-gray-500">Pelayanan terintegrasi untuk SKPD, konsultasi <br> Digitalisasi dan Pengadaan TIK</p>
+          <p class="text-base leading-loose text-gray-500 sm:text-sm">Bidang E-Goverment <br> Dinas Komunikasi dan Informatika <br> Kajen Kabupaten Pekalongan 51161<br> Jawa Tengah, Indonesia  </p>
           <div class="flex flex-row gap-x-4">
 
             <!-- email -->
 
             <div class="bg-white rounded-full flex p-[12px] items-center">
               <a href="#">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M17 20.5H7C4 20.5 2 19 2 15.5V8.5C2 5 4 3.5 7 3.5H17C20 3.5 22 5 22 8.5V15.5C22 19 20 20.5 17 20.5Z" stroke="#640EF1" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M17 9L13.87 11.5C12.84 12.32 11.15 12.32 10.12 11.5L7 9" stroke="#640EF1" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>                  
+                <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.26619 15.7363C11.6954 20.1647 15.7998 20.6495 17.0047 20.6945C18.4608 20.7474 19.9468 19.5589 20.5896 18.3415C19.5644 17.1391 18.2293 16.2062 16.7674 15.195C15.9046 16.0565 14.8414 17.6574 13.4256 17.0838C12.6204 16.7602 10.6322 15.8446 8.89504 14.1067C7.1579 12.3687 6.24211 10.382 5.9161 9.57814C5.34243 8.16039 6.94825 7.09505 7.81106 6.23242C6.79965 4.74671 5.8827 3.37733 4.68237 2.40413C3.44748 3.04909 2.25176 4.52328 2.3059 5.99862C2.35083 7.20331 2.8358 11.3069 7.26619 15.7363ZM16.9195 22.9967C15.2607 22.9357 10.5596 22.2861 5.63618 17.3649C0.713911 12.4424 0.0653638 7.74347 0.00315864 6.08385C-0.0889971 3.55469 1.84858 1.09809 4.08681 0.138717C4.35634 0.0223559 4.6515 -0.0219463 4.94332 0.0101576C5.23514 0.0422616 5.5136 0.149668 5.75138 0.321839C7.60371 1.6728 8.88122 3.71939 9.97902 5.32257C10.2074 5.65593 10.312 6.05863 10.2748 6.46097C10.2375 6.86331 10.0608 7.23998 9.77513 7.52579L8.21309 9.08866C8.57595 9.8891 9.31435 11.2689 10.5239 12.4782C11.7334 13.6874 13.1135 14.4257 13.9152 14.7885L15.4761 13.2268C15.7627 12.9399 16.1411 12.763 16.5451 12.727C16.949 12.691 17.3527 12.7982 17.6855 13.0298C19.3213 14.1631 21.2428 15.4219 22.6435 17.2151C22.8297 17.4546 22.9482 17.7396 22.9865 18.0405C23.0248 18.3414 22.9815 18.647 22.8612 18.9254C21.8971 21.1747 19.4572 23.09 16.9195 22.9967Z" fill="#640EF1"/>
+                </svg>                                    
               </a>
             </div>
 
@@ -251,82 +216,77 @@
         <!-- sitemap1 -->
 
         <div class="flex flex-col gap-y-7">
-          <h3 class="text-white font-bold text-lg">Product</h3>
+          <h3 class="text-white font-bold text-lg">Informasi Publik</h3>
           <ul class="flex flex-col gap-y-4">
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Berita
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Artikel
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Open Data
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Pengumuman
               </a>
             </li>
           </ul>
         </div>
 
-        <!-- sitemap1 -->
+        <!-- sitemap2 -->
 
         <div class="flex flex-col gap-y-7">
-          <h3 class="text-white font-bold text-lg">Product</h3>
+          <h3 class="text-white font-bold text-lg">Tentang</h3>
           <ul class="flex flex-col gap-y-4">
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Profil
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Visi & Misi
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Struktur Organisasi
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Data Pegawai
               </a>
             </li>
           </ul>
         </div>
 
-        <!-- sitemap1 -->
+        <!-- sitemap3 -->
 
         <div class="flex flex-col gap-y-7">
-          <h3 class="text-white font-bold text-lg">Product</h3>
+          <h3 class="text-white font-bold text-lg">Bantuan</h3>
           <ul class="flex flex-col gap-y-4">
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Panduan Pengguna
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Lapor Kendala Layanan
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
-              </a>
-            </li>
-            <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Laporkan Penyalahgunaan
               </a>
             </li>
           </ul>

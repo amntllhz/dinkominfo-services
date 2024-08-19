@@ -1,8 +1,11 @@
 <?php
 
+use App\Filament\Resources\RequestSubmissionResource\Pages\ViewCustomPage;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
+
+
 
 Route::get('/', [FrontController::class, 'index'])
     ->name('front.index');
@@ -21,6 +24,9 @@ Route::post('/service/layanan-vps/form', [ServiceController::class, 'handleFormS
 
 Route::post('/service/layanan-clearance/form', [ServiceController::class, 'handleFormSubmissionClearance'])
     ->name('form.submitclearance');
+
+Route::post('/service/layanan-domain/form', [ServiceController::class, 'handleFormSubmissionDomain'])
+    ->name('form.submitdomain');
 
 Route::get('/success/{id}', [ServiceController::class, 'success'])
     ->name('forms.success');

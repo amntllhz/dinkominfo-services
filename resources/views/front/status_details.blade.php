@@ -34,71 +34,101 @@
           </div>
           <div class="mx-auto max-w-4xl">
             <div class="space-y-12">
-    @if($details)
-    <!-- Tampilkan detail jika data ditemukan -->
-    <div class="border-b border-gray-900/10 pb-12 mt-10 leading-relaxed">
-                <div class=" max-w-2xl grid grid-cols-4 gap-x-6 gap-y-2 mx-auto">
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-left">
-                      Nama
-                    </h3>
-                  </div>
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-right">
-                      {{ $details->applicant }}
-                    </h3>
-                  </div>
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-left">
-                      No. Resi
-                    </h3>
-                  </div>
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-right">
-                      {{ $details->receipt }}
-                    </h3>
-                  </div>
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-left">
-                      Jenis Layanan
-                    </h3>
-                  </div>
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-right">
-                      {{ $details->service->name }}
-                    </h3>
-                  </div>
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-left">
-                      Status
-                    </h3>
-                  </div>
-                  <div class="col-span-2">
-                    <h3 class="text-sm font-medium text-indigo-950 text-right">
-                      {{ $details->status }}
-                    </h3>
-                  </div>
-                </div>
+          @if($details)
+          <!-- Tampilkan detail jika data ditemukan -->
+            <div class="flex flex-col gap-y-5 bg-white rounded-2xl p-6">
+              <div class="mx-auto mt-4">                  
+                <svg width="185" height="124" viewBox="0 0 185 124" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M44.75 27C47.6375 27 50 24.57 50 21.6C50 18.63 47.6375 16.2 44.75 16.2H44.4875C44.4875 15.39 44.75 14.58 44.75 13.5C44.75 7.56 40.025 2.7 34.25 2.7C32.15 2.7 30.3125 3.24 28.475 4.32C27.6875 1.89 25.325 0 22.4375 0C18.7625 0 15.875 2.97 15.875 6.75C15.875 8.37 16.4 9.72 17.45 11.07C16.925 10.8 16.4 10.8 15.875 10.8C11.4125 10.8 8 14.31 8 18.9C8 23.49 11.4125 27 15.875 27H44.75Z" fill="#EDE0FF"/>
+                  <path d="M76.8945 112.943C64.045 110.036 53.516 103.47 45.3073 93.2469C37.0987 83.0236 32.9963 71.2996 33 58.075C33.0038 44.8504 37.1081 33.1264 45.313 22.9031C53.5179 12.6798 64.045 6.11443 76.8945 3.20689C78.6765 2.73794 80.2485 3.06621 81.6103 4.19171C82.9722 5.3172 83.6512 6.81787 83.6475 8.6937C83.6475 10.0068 83.2723 11.1792 82.522 12.2109C81.7716 13.2426 80.7399 13.8991 79.4269 14.1805C69.1098 16.5253 60.6685 21.7776 54.1031 29.9375C47.5377 38.0974 44.255 47.4765 44.255 58.075C44.255 68.6735 47.5377 78.0526 54.1031 86.2125C60.6685 94.3724 69.1098 99.6247 79.4269 101.969C80.7399 102.251 81.7716 102.907 82.522 103.939C83.2723 104.971 83.6475 106.143 83.6475 107.456C83.6475 109.332 82.9684 110.833 81.6103 111.958C80.2522 113.084 78.6803 113.412 76.8945 112.943ZM101.655 112.943C99.8734 113.412 98.3034 113.084 96.9453 111.958C95.5872 110.833 94.9062 109.332 94.9025 107.456C94.9025 106.143 95.2776 104.971 96.028 103.939C96.7783 102.907 97.81 102.251 99.1231 101.969C101.655 101.407 104.118 100.632 106.512 99.6453C108.906 98.6586 111.179 97.4637 113.333 96.0606C114.364 95.3103 115.514 95.0289 116.782 95.2165C118.05 95.4041 119.151 95.9668 120.086 96.9047C121.399 98.2178 121.961 99.7429 121.774 101.48C121.586 103.217 120.742 104.599 119.241 105.627C116.521 107.316 113.683 108.769 110.727 109.989C107.771 111.208 104.747 112.193 101.655 112.943ZM128.105 89.0262C127.167 88.0883 126.604 86.9872 126.416 85.7229C126.229 84.4586 126.51 83.3087 127.261 82.2732C128.667 80.116 129.864 77.8181 130.851 75.3796C131.838 72.941 132.61 70.4555 133.169 67.9231C133.451 66.61 134.107 65.6027 135.139 64.9012C136.171 64.1996 137.343 63.8469 138.656 63.8432C140.532 63.8432 142.033 64.5241 143.158 65.886C144.284 67.2478 144.612 68.8179 144.143 70.5962C143.393 73.6913 142.408 76.717 141.189 79.6733C139.969 82.6297 138.516 85.4659 136.827 88.1821C135.796 89.6828 134.413 90.5269 132.68 90.7145C130.947 90.9021 129.422 90.3393 128.105 89.0262ZM138.656 52.4475C137.343 52.4475 136.171 52.0723 135.139 51.322C134.107 50.5717 133.451 49.54 133.169 48.2269C132.607 45.6945 131.832 43.2334 130.845 40.8436C129.859 38.4538 128.664 36.1784 127.261 34.0174C126.51 32.8919 126.229 31.697 126.416 30.4327C126.604 29.1684 127.167 28.0654 128.105 27.1238C129.418 25.8107 130.943 25.2479 132.68 25.4355C134.417 25.6231 135.799 26.5141 136.827 28.1086C138.516 30.8285 139.969 33.6667 141.189 36.623C142.408 39.5793 143.393 42.6031 144.143 45.6945C144.612 47.4765 144.284 49.0485 143.158 50.4103C142.033 51.7722 140.532 52.4513 138.656 52.4475ZM113.333 20.0894C111.175 18.6825 108.902 17.4857 106.512 16.499C104.122 15.5124 101.659 14.7395 99.1231 14.1805C97.81 13.8991 96.7783 13.2426 96.028 12.2109C95.2776 11.1792 94.9025 10.0068 94.9025 8.6937C94.9025 6.81787 95.5834 5.3172 96.9453 4.19171C98.3071 3.06621 99.8772 2.73794 101.655 3.20689C104.751 3.95723 107.776 4.94204 110.733 6.16133C113.689 7.38062 116.525 8.83439 119.241 10.5226C120.836 11.5543 121.727 12.9387 121.914 14.6757C122.102 16.4128 121.539 17.9359 120.226 19.2453C119.288 20.1832 118.187 20.7459 116.923 20.9335C115.659 21.1211 114.462 20.8397 113.333 20.0894ZM89.1343 86.2125C87.5398 86.2125 86.2042 85.6723 85.1275 84.5918C84.0508 83.5113 83.5105 82.1757 83.5068 80.585V51.7441L72.9552 62.4363C71.8297 63.5618 70.4941 64.1246 68.9485 64.1246C67.4028 64.1246 66.0653 63.5618 64.9361 62.4363C63.8068 61.3108 63.2215 59.9752 63.1803 58.4295C63.139 56.8838 63.6774 55.5464 64.7954 54.4171L85.195 33.8768C86.2267 32.845 87.5398 32.3292 89.1343 32.3292C90.7287 32.3292 92.0418 32.845 93.0735 33.8768L113.192 53.9951C114.317 55.1206 114.904 56.4805 114.953 58.075C115.002 59.6695 114.462 61.0294 113.333 62.1549C112.203 63.2804 110.843 63.8432 109.253 63.8432C107.662 63.8432 106.302 63.2804 105.173 62.1549L94.7618 51.7441V80.585C94.7618 82.1795 94.2234 83.5169 93.1467 84.5974C92.07 85.6779 90.7325 86.2162 89.1343 86.2125Z" fill="#640EF1"/>
+                  <path d="M27.125 97C29.2563 97 31 95.2 31 93C31 90.8 29.2563 89 27.125 89H26.9312C26.9312 88.4 27.125 87.8 27.125 87C27.125 82.6 23.6375 79 19.375 79C17.825 79 16.4688 79.4 15.1125 80.2C14.5313 78.4 12.7875 77 10.6562 77C7.94375 77 5.8125 79.2 5.8125 82C5.8125 83.2 6.2 84.2 6.975 85.2C6.5875 85 6.2 85 5.8125 85C2.51875 85 0 87.6 0 91C0 94.4 2.51875 97 5.8125 97H27.125Z" fill="#EDE0FF"/>
+                  <path d="M177.75 37C180.638 37 183 34.57 183 31.6C183 28.63 180.638 26.2 177.75 26.2H177.487C177.487 25.39 177.75 24.58 177.75 23.5C177.75 17.56 173.025 12.7 167.25 12.7C165.15 12.7 163.313 13.24 161.475 14.32C160.688 11.89 158.325 10 155.438 10C151.763 10 148.875 12.97 148.875 16.75C148.875 18.37 149.4 19.72 150.45 21.07C149.925 20.8 149.4 20.8 148.875 20.8C144.412 20.8 141 24.31 141 28.9C141 33.49 144.412 37 148.875 37H177.75Z" fill="#EDE0FF"/>
+                  <path d="M172.375 124C179.319 124 185 118.24 185 111.2C185 104.16 179.319 98.4 172.375 98.4H171.744C171.744 96.48 172.375 94.56 172.375 92C172.375 77.92 161.013 66.4 147.125 66.4C142.075 66.4 137.656 67.68 133.238 70.24C131.344 64.48 125.663 60 118.719 60C109.881 60 102.938 67.04 102.938 76C102.938 79.84 104.2 83.04 106.725 86.24C105.462 85.6 104.2 85.6 102.938 85.6C92.2062 85.6 84 93.92 84 104.8C84 115.68 92.2062 124 102.938 124H172.375Z" fill="#EDE0FF"/>
+                </svg>                                                                                                                                                                                             
               </div>
-    @else
-    <div class="alert alert-warning">
-        <h4 class="alert-heading">Data Tidak Ditemukan</h4>
-        <p>Maaf, kami tidak dapat menemukan data submission dengan nomor receipt <strong>{{ $receipt }}</strong>.</p>
-        <hr>
-        <p class="mb-0">Mohon periksa kembali nomor receipt Anda atau hubungi customer service kami untuk bantuan lebih lanjut.</p>
-    </div>
-    @endif
+              
+              <h3 class="text-center text-indigo-950 text-xl font-clash font-semibold">Detail Pengajuan</h3>
+
+              
+                
+              <div class="bg-slate-100 py-2 px-4 rounded-md mx-auto">
+                <div class="grid grid-cols-4 mx-auto mt-1 mb-1">
+                  <div class="col-span-2">
+                    <h3 class="text-sm font-bold text-indigo-950 text-left">No. Resi</h3>
+                  </div>
+                  <div class="col-span-2">
+                    <h3 class="text-sm font-normal text-violet-700 text-right">{{ $details->receipt }}</h3>
+                  </div>                  
+                </div>
+                <div class="grid grid-cols-4 mx-auto mt-1 mb-1">
+                  <div class="col-span-2">
+                    <h3 class="text-sm font-bold text-indigo-950 text-left">Nama</h3>
+                  </div>
+                  <div class="col-span-2">
+                    <h3 class="text-sm font-normal text-violet-700 text-right">{{ $details->applicant }}</h3>
+                  </div>                  
+                </div>
+                <div class="grid grid-cols-4 mx-auto mt-1 mb-1">
+                  <div class="col-span-2">
+                    <h3 class="text-sm font-bold text-indigo-950 text-left">Layanan</h3>
+                  </div>
+                  <div class="col-span-2">
+                    <h3 class="text-sm font-normal text-violet-700 text-right">{{ $details->service->name }}</h3>
+                  </div>                  
+                </div>
+                <div class="grid grid-cols-4 mx-auto mt-1 mb-1">
+                  <div class="col-span-2">
+                    <h3 class="text-sm font-bold text-indigo-950 text-left">Status</h3>
+                  </div>
+                  <div class="col-span-2">
+                    <h3 class="text-sm font-normal text-violet-700 text-right">{{ $details->status }}</h3>
+                  </div>                  
+                </div>                                                        
+              </div>
+
+              <div class="mt-2 flex items-center justify-center gap-x-6">                  
+                <a href="{{ route('front.index') }}">
+                  <button class="rounded-full bg-violet-700 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Beranda</button>
+                </a>
+              </div>
+            </div>    
+              
+          @else
+          {{-- <div class="alert alert-warning">
+              <h4 class="alert-heading">Data Tidak Ditemukan</h4>
+              <p>Maaf, kami tidak dapat menemukan data submission dengan nomor receipt <strong>{{ $receipt }}</strong>.</p>
+              <hr>
+              <p class="mb-0">Mohon periksa kembali nomor receipt Anda atau hubungi customer service kami untuk bantuan lebih lanjut.</p>
+          </div> --}}
+
+            <div class="flex flex-col gap-y-5 bg-white rounded-2xl p-6">
+              
+              
+              <div class="bg-slate-100 py-2 px-4 rounded-md mx-auto">
+              <h4 class="alert-heading">Data Tidak Ditemukan</h4>
+              <p>Maaf, kami tidak dapat menemukan data submission dengan nomor receipt <strong>{{ $receipt }}</strong>.</p>
+              <hr>
+              <p class="mb-0">Mohon periksa kembali nomor receipt Anda atau hubungi customer service kami untuk bantuan lebih lanjut.</p>                                                     
+              </div>
+
+              <div class="mt-2 flex items-center justify-center gap-x-6">                  
+                <a href="{{ route('front.index') }}">
+                  <button class="rounded-full bg-violet-700 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Beranda</button>
+                </a>
+              </div>
+            </div>    
+          @endif
     </section>
 
     <!-- Hero -->
 
     <!-- footer -->
      <section class="w-screen bg-[#070C29] mt-10 p-8">
-      <div class="max-w-6xl mx-auto py-10 grid grid-cols-5 gap-x-10">
+      <div class="max-w-6xl mx-auto py-10 grid grid-cols-5 gap-x-10 sm:max-w-sm sm:grid-cols-1 sm:gap-y-8">
 
         <!-- company -->
 
-        <div class=" flex flex-col col-span-2 gap-y-7">
+        <div class=" flex flex-col col-span-2 gap-y-7 sm:col-span-1">
           <svg width="179" height="42" viewBox="0 0 179 42" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_398_102)">
             <path d="M6.94377 26.5092L6.42839 25.7757C5.37484 24.2805 4.62388 22.5938 4.21779 20.8105C3.72872 18.6576 3.74732 16.4205 4.27209 14.2761L4.35196 13.9567L4.61391 13.7523C6.85927 12.0001 9.42848 10.7082 12.1742 9.95064C15.9906 8.90024 20.02 8.90024 23.8363 9.95064C26.5802 10.7088 29.1476 12.0007 31.3914 13.7523L31.6533 13.9567L31.7332 14.2761C32.2579 16.4205 32.2765 18.6576 31.7875 20.8105C31.3814 22.5938 30.6304 24.2805 29.5769 25.7757L29.0615 26.5092L28.2948 26.044C25.1915 24.1657 21.633 23.1728 18.0053 23.1728C14.3776 23.1728 10.8191 24.1657 7.71578 26.044L6.94377 26.5092ZM18 21.264C21.6634 21.2578 25.2688 22.1789 28.4801 23.9414C29.1439 22.8395 29.6277 21.6389 29.9134 20.3846C30.3105 18.6335 30.3199 16.8168 29.941 15.0617C27.961 13.5656 25.716 12.4571 23.3242 11.7945C19.8423 10.8364 16.1662 10.8364 12.6843 11.7945C10.2914 12.455 8.04491 13.5617 6.06315 15.0564C5.6841 16.8115 5.69355 18.6282 6.09083 20.3793C6.37626 21.6339 6.8601 22.835 7.5241 23.9372C10.7349 22.1777 14.3385 21.2581 18 21.264Z" fill="#640EF1"/>
@@ -115,17 +145,16 @@
             </clipPath>
             </defs>
             </svg>            
-          <p class="text-base leading-loose text-gray-500">Pelayanan terintegrasi untuk SKPD, konsultasi <br> Digitalisasi dan Pengadaan TIK</p>
+          <p class="text-base leading-loose text-gray-500 sm:text-sm">Bidang E-Goverment <br> Dinas Komunikasi dan Informatika <br> Kajen Kabupaten Pekalongan 51161<br> Jawa Tengah, Indonesia  </p>
           <div class="flex flex-row gap-x-4">
 
             <!-- email -->
 
             <div class="bg-white rounded-full flex p-[12px] items-center">
               <a href="#">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M17 20.5H7C4 20.5 2 19 2 15.5V8.5C2 5 4 3.5 7 3.5H17C20 3.5 22 5 22 8.5V15.5C22 19 20 20.5 17 20.5Z" stroke="#640EF1" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M17 9L13.87 11.5C12.84 12.32 11.15 12.32 10.12 11.5L7 9" stroke="#640EF1" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>                  
+                <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.26619 15.7363C11.6954 20.1647 15.7998 20.6495 17.0047 20.6945C18.4608 20.7474 19.9468 19.5589 20.5896 18.3415C19.5644 17.1391 18.2293 16.2062 16.7674 15.195C15.9046 16.0565 14.8414 17.6574 13.4256 17.0838C12.6204 16.7602 10.6322 15.8446 8.89504 14.1067C7.1579 12.3687 6.24211 10.382 5.9161 9.57814C5.34243 8.16039 6.94825 7.09505 7.81106 6.23242C6.79965 4.74671 5.8827 3.37733 4.68237 2.40413C3.44748 3.04909 2.25176 4.52328 2.3059 5.99862C2.35083 7.20331 2.8358 11.3069 7.26619 15.7363ZM16.9195 22.9967C15.2607 22.9357 10.5596 22.2861 5.63618 17.3649C0.713911 12.4424 0.0653638 7.74347 0.00315864 6.08385C-0.0889971 3.55469 1.84858 1.09809 4.08681 0.138717C4.35634 0.0223559 4.6515 -0.0219463 4.94332 0.0101576C5.23514 0.0422616 5.5136 0.149668 5.75138 0.321839C7.60371 1.6728 8.88122 3.71939 9.97902 5.32257C10.2074 5.65593 10.312 6.05863 10.2748 6.46097C10.2375 6.86331 10.0608 7.23998 9.77513 7.52579L8.21309 9.08866C8.57595 9.8891 9.31435 11.2689 10.5239 12.4782C11.7334 13.6874 13.1135 14.4257 13.9152 14.7885L15.4761 13.2268C15.7627 12.9399 16.1411 12.763 16.5451 12.727C16.949 12.691 17.3527 12.7982 17.6855 13.0298C19.3213 14.1631 21.2428 15.4219 22.6435 17.2151C22.8297 17.4546 22.9482 17.7396 22.9865 18.0405C23.0248 18.3414 22.9815 18.647 22.8612 18.9254C21.8971 21.1747 19.4572 23.09 16.9195 22.9967Z" fill="#640EF1"/>
+                </svg>                                    
               </a>
             </div>
 
@@ -171,82 +200,77 @@
         <!-- sitemap1 -->
 
         <div class="flex flex-col gap-y-7">
-          <h3 class="text-white font-bold text-lg">Product</h3>
+          <h3 class="text-white font-bold text-lg">Informasi Publik</h3>
           <ul class="flex flex-col gap-y-4">
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Berita
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Artikel
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Open Data
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Pengumuman
               </a>
             </li>
           </ul>
         </div>
 
-        <!-- sitemap1 -->
+        <!-- sitemap2 -->
 
         <div class="flex flex-col gap-y-7">
-          <h3 class="text-white font-bold text-lg">Product</h3>
+          <h3 class="text-white font-bold text-lg">Tentang</h3>
           <ul class="flex flex-col gap-y-4">
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Profil
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Visi & Misi
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Struktur Organisasi
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Data Pegawai
               </a>
             </li>
           </ul>
         </div>
 
-        <!-- sitemap1 -->
+        <!-- sitemap3 -->
 
         <div class="flex flex-col gap-y-7">
-          <h3 class="text-white font-bold text-lg">Product</h3>
+          <h3 class="text-white font-bold text-lg">Bantuan</h3>
           <ul class="flex flex-col gap-y-4">
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Panduan Pengguna
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Lapor Kendala Layanan
               </a>
             </li>
             <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
-              </a>
-            </li>
-            <li>
-              <a href="#" class="text-base text-gray-500 hover:text-violet-700">
-                Application
+              <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+                Laporkan Penyalahgunaan
               </a>
             </li>
           </ul>

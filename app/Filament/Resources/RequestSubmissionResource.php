@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Actions\CustomViewAction;
 use App\Filament\Resources\RequestSubmissionResource\Pages;
 use App\Filament\Resources\RequestSubmissionResource\RelationManagers;
 use App\Models\RequestSubmission;
@@ -88,6 +89,8 @@ class RequestSubmissionResource extends Resource
                                         ->columnSpan(1),
                                     FileUpload::make('document')
                                         ->label('Documents Aplikasi')
+                                        ->openable()
+                                        ->downloadable()
                                         ->required()
                                         ->columnSpan(1),
                                     Textarea::make('add_inform')
@@ -125,6 +128,8 @@ class RequestSubmissionResource extends Resource
                                         ->columnSpan(1),
                                     FileUpload::make('document')
                                         ->label('Documents Permohonan')
+                                        ->openable()
+                                        ->downloadable()
                                         ->required()
                                         ->columnSpan(1),
                                     Textarea::make('add_inform')
@@ -149,6 +154,8 @@ class RequestSubmissionResource extends Resource
                                     FileUpload::make('document')
                                         ->label('Documents Permohonan')
                                         ->required()
+                                        ->openable()
+                                        ->downloadable()
                                         ->columnSpan(1),
                                     Textarea::make('add_inform')
                                         ->label('Keterangan Lainnya')
@@ -168,6 +175,8 @@ class RequestSubmissionResource extends Resource
                                     FileUpload::make('documents')
                                         ->label('Document Surat Permohonan, Proposal, dan Dokumen Pendukung')
                                         ->required()
+                                        ->openable()
+                                        ->downloadable()
                                         ->multiple(),
                                     Textarea::make('add_inform')
                                         ->label('Keterangan Lainnya')
@@ -227,6 +236,14 @@ class RequestSubmissionResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
+                // Tables\Actions\Action::make('view')
+                //     ->label('View')
+                //     ->icon('heroicon-o-eye')
+                //     ->form([])
+                //     ->modalHeading('Detail View')
+                //     ->modalContent(fn($record) => view('filament.view', [
+                //         'record' => $record,
+                //     ])),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\Action::make('updateStatus')
                     ->label('Update Status')
@@ -280,6 +297,7 @@ class RequestSubmissionResource extends Resource
             'index' => Pages\ListRequestSubmissions::route('/'),
             'create' => Pages\CreateRequestSubmission::route('/create'),
             'edit' => Pages\EditRequestSubmission::route('/{record}/edit'),
+
         ];
     }
 }

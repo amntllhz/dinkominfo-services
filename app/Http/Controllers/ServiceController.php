@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RequestClearance;
+use App\Http\Requests\RequestDomain;
 use App\Http\Requests\RequestVPS;
 use App\Models\ReqDetailVPS;
 use App\Models\RequestSubmission;
@@ -75,62 +76,51 @@ class ServiceController extends Controller
         return redirect()->route('forms.success', $submission_id);
     }
 
-    // public function handleFormSubmissionClearance(RequestClearance $request)
-    // {
-    //     $applicant = $request->applicant;
-    //     $instansi = $request->instansi;
-    //     $email = $request->email;
-    //     $phone = $request->phone;
-    //     $purpose = $request->purpose;
-    //     $add_inform = $request->add_inform;
-    //     $service_id = 4;
+    public function handleFormSubmissionDomain(RequestDomain $request)
+    {
+        $applicant = $request->applicant;
+        $instansi = $request->instansi;
+        $email = $request->email;
+        $phone = $request->phone;
+        $app_name = $request->app_name;
+        $desc_name = $request->desc_name;
+        $site = $request->site;
+        $ip = $request->ip;
+        $add_inform = $request->add_inform;
+        $service_id = 3;
 
-    //     $submission_id = null;
+        $submission_id = null;
 
-    //     DB::transaction(function () use ($request, $applicant, $instansi, $email, $phone, $purpose,  $add_inform, $service_id, &$submission_id) {
-    //         $validated = $request->validated();
+        DB::transaction(function () use ($request, $applicant, $instansi, $email, $phone, $app_name, $desc_name, $site, $ip, $add_inform, $service_id, &$submission_id) {
+            $validated = $request->validated();
 
-    //         $validated['applicant'] = $applicant;
-    //         $validated['instansi'] = $instansi;
-    //         $validated['email'] = $email;
-    //         $validated['phone'] = $phone;
-    //         $validated['service_id'] = $service_id;
+            $validated['applicant'] = $applicant;
+            $validated['instansi'] = $instansi;
+            $validated['email'] = $email;
+            $validated['phone'] = $phone;
+            $validated['service_id'] = $service_id;
 
-    //         $newRequestSubmission = RequestSubmission::create($validated);
-    //         $submission_id = $newRequestSubmission->id;
+            $newRequestSubmission = RequestSubmission::create($validated);
+            $submission_id = $newRequestSubmission->id;
 
-    //         $validated['request_submission_id'] = $submission_id;
-    //         $validated['purpose'] = $purpose;
-    //         $validated['add_inform'] = $add_inform;
-
-    //         // if ($request->hasFile('documents')) {
-    //         //     $files = $request->file('documents');
-    //         //     $docPaths = [];
-    //         //     foreach ($files as $file) {
-    //         //         $docPath = $file->store('documents/clearance', 'public');
-    //         //         $docPaths[] = $docPath;
-    //         //     }
-
-    //         //     $validated['documents'] = $docPaths;
-    //         // }
-
-    //         // if ($request->hasFile('documents')) {
-    //         //     $files = $request->file('documents');
-    //         //     $docPath = [];
-    //         //     foreach ($files as $file) {
-    //         //         $docPath = $file->store('documents/clearance', 'public');
-    //         //         $validated['documents'][] = $docPath;
-    //         //     }
-    //         // }
+            $validated['request_submission_id'] = $submission_id;
+            $validated['app_name'] = $app_name;
+            $validated['desc_name'] = $desc_name;
+            $validated['site'] = $site;
+            $validated['ip'] = $ip;
 
 
+            $validated['add_inform'] = $add_inform;
+            if ($request->hasFile('document')) {
+                $docPath = $request->file('document')->store('documents/domain', 'public');
+                $validated['document'] = $docPath;
+            }
 
+            $newRequestSubmission->reqDetailDomains()->create($validated);
+        });
+        return redirect()->route('forms.success', $submission_id);
+    }
 
-    //         $newRequestSubmission->reqDetailClearances()->create($validated);
-    //         // dd($newRequestSubmission);
-    //     });
-    //     return redirect()->route('forms.success', $submission_id);
-    // }
 
     public function handleFormSubmissionClearance(RequestClearance $request)
     {
