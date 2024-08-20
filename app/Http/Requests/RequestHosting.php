@@ -11,7 +11,7 @@ class RequestHosting extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class RequestHosting extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'applicant' => 'required|string|max:255',
+            'instansi' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            'cpu' => 'required|string|max:255',
+            'ram' => 'required|string|max:255',
+            'storage' => 'required|string|max:255',
+            'purpose' => 'required|string|max:255',
+            'add_inform' => 'nullable|string|max:255',
+            'document' => 'required|file|mimes:pdf,docx|max:10240', // Max 10MB
         ];
     }
 }

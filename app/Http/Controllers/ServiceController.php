@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RequestClearance;
 use App\Http\Requests\RequestDomain;
+use App\Http\Requests\RequestHosting;
 use App\Http\Requests\RequestVPS;
 use App\Models\ReqDetailVPS;
 use App\Models\RequestSubmission;
@@ -72,6 +73,49 @@ class ServiceController extends Controller
             }
 
             $newRequestSubmission->reqDetailVPSs()->create($validated);
+        });
+        return redirect()->route('forms.success', $submission_id);
+    }
+
+    public function handleFormSubmissionHosting(RequestHosting $request)
+    {
+        $applicant = $request->applicant;
+        $instansi = $request->instansi;
+        $email = $request->email;
+        $phone = $request->phone;
+        $cpu = $request->cpu;
+        $ram = $request->ram;
+        $storage = $request->storage;
+        $purpose = $request->purpose;
+        $add_inform = $request->add_inform;
+        $service_id = 2;
+
+        $submission_id = null;
+
+        DB::transaction(function () use ($request, $applicant, $instansi, $email, $phone, $cpu, $ram, $storage, $purpose, $add_inform, $service_id, &$submission_id) {
+            $validated = $request->validated();
+
+            $validated['applicant'] = $applicant;
+            $validated['instansi'] = $instansi;
+            $validated['email'] = $email;
+            $validated['phone'] = $phone;
+            $validated['service_id'] = $service_id;
+
+            $newRequestSubmission = RequestSubmission::create($validated);
+            $submission_id = $newRequestSubmission->id;
+
+            $validated['request_submission_id'] = $submission_id;
+            $validated['cpu'] = $cpu;
+            $validated['ram'] = $ram;
+            $validated['storage'] = $storage;
+            $validated['purpose'] = $purpose;
+            $validated['add_inform'] = $add_inform;
+            if ($request->hasFile('document')) {
+                $docPath = $request->file('document')->store('documents/hosting', 'public');
+                $validated['document'] = $docPath;
+            }
+
+            $newRequestSubmission->reqDetailHostings()->create($validated);
         });
         return redirect()->route('forms.success', $submission_id);
     }

@@ -28,6 +28,9 @@ Route::post('/service/layanan-clearance/form', [ServiceController::class, 'handl
 Route::post('/service/layanan-domain/form', [ServiceController::class, 'handleFormSubmissionDomain'])
     ->name('form.submitdomain');
 
+Route::post('/service/layanan-hosting/form', [ServiceController::class, 'handleFormSubmissionHosting'])
+    ->name('form.submithosting');
+
 Route::get('/success/{id}', [ServiceController::class, 'success'])
     ->name('forms.success');
 
