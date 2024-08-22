@@ -24,6 +24,7 @@ class RequestClearance extends FormRequest
         return [
             'applicant' => 'required|string|max:255',
             'instansi' => 'required|string|max:255',
+            'title_req' => 'required|string|max:255',
             'email' => 'required|email',
             'phone' => 'required|numeric',
             'add_inform' => 'required|string|max:255',

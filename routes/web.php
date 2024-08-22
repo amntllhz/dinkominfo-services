@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontController::class, 'index'])
     ->name('front.index');
 
+Route::get('/services', [FrontController::class, 'services'])
+    ->name('front.services');
+
 Route::get('/cek-status', [FrontController::class, 'cekStatus'])
     ->name('front.status');
 
@@ -33,11 +36,3 @@ Route::post('/service/layanan-hosting/form', [ServiceController::class, 'handleF
 
 Route::get('/success/{id}', [ServiceController::class, 'success'])
     ->name('forms.success');
-
-// Route::post('/service/{slug}/form/status', [ServiceController::class, 'store'])
-//     ->name('front.service.form.submit');
-
-    
-// Route::get('/', function () {
-//     return view('tes');
-// });

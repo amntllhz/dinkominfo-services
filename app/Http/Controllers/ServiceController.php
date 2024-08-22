@@ -186,6 +186,7 @@ class ServiceController extends Controller
             $clearanceData = [
                 'request_submission_id' => $submission_id,
                 'purpose' => $validated['purpose'],
+                'title_req' => $validated['title_req'],
                 'add_inform' => $validated['add_inform'],
             ];
 
