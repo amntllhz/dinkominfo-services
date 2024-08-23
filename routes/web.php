@@ -36,3 +36,6 @@ Route::post('/service/layanan-hosting/form', [ServiceController::class, 'handleF
 
 Route::get('/success/{id}', [ServiceController::class, 'success'])
     ->name('forms.success');
+
+    // Route::get('/success/{id}', [ServiceController::class, 'success'])
+    // ->name('forms.success');
