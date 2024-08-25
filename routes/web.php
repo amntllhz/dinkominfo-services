@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'index'])
     ->name('front.index');
+// tes;
 
 Route::get('/services', [FrontController::class, 'services'])
     ->name('front.services');
