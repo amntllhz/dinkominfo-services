@@ -219,7 +219,7 @@ class RequestSubmissionResource extends Resource
                 Tables\Columns\TextColumn::make('service.name')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('instansi')
+                Tables\Columns\TextColumn::make('instansi.name')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
