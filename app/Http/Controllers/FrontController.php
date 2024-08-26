@@ -14,6 +14,11 @@ class FrontController extends Controller
         return view('front.index', compact('services'));
     }
 
+    public function about()
+    {
+        return view('front.about');
+    }
+
     public function services()
     {
         $services = Service::all();

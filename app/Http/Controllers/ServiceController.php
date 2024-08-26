@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RequestClearance;
 use App\Http\Requests\RequestDomain;
 use App\Http\Requests\RequestHosting;
+use App\Http\Requests\RequestReport;
 use App\Http\Requests\RequestVPS;
+use App\Models\Report;
 use App\Models\ReqDetailVPS;
 use App\Models\RequestSubmission;
 use App\Models\Service;
@@ -214,6 +216,7 @@ class ServiceController extends Controller
 
         return redirect()->route('forms.success', $submission_id);
     }
+
 
     public function success($submission_id)
     {

@@ -2,6 +2,8 @@
 
 use App\Filament\Resources\RequestSubmissionResource\Pages\ViewCustomPage;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\InstansiController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,7 +11,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'index'])
     ->name('front.index');
-// tes;
+
+Route::get('/about', [FrontController::class, 'about'])
+    ->name('front.about');
 
 Route::get('/services', [FrontController::class, 'services'])
     ->name('front.services');
@@ -38,5 +42,15 @@ Route::post('/service/layanan-hosting/form', [ServiceController::class, 'handleF
 Route::get('/success/{id}', [ServiceController::class, 'success'])
     ->name('forms.success');
 
+Route::post('/instansi', [InstansiController::class, 'store']);
+
+Route::get('/report', [ReportController::class, 'formReport'])
+    ->name('form.report');
+
+Route::post('/report', [ReportController::class, 'handlFormReport'])
+    ->name('form.handlereport');
+
+Route::get('/success-report/{id}', [ReportController::class, 'success'])
+    ->name('form.successreport');
     // Route::get('/success/{id}', [ServiceController::class, 'success'])
     // ->name('forms.success');

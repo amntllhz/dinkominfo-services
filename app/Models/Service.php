@@ -30,4 +30,9 @@ class Service extends Model
     {
         return $this->hasMany(RequestSubmission::class);
     }
+
+    public function reports(): HasMany
+    {
+        return $this->hasMany(Report::class);
+    }
 }

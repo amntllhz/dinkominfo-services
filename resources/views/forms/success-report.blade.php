@@ -80,41 +80,9 @@
                   </div>
 
                 </div> --}}
-                <div class="flex flex-col gap-y-1 text-center">
-                  <h3 class="font-clash font-semibold text-2xl text-indigo-950">Pengajuan Terkirim</h3>
-                  <p class="text-sm font-semibold leading-normal text-violet-700 mb-1">Pengajuan {{ $submission->service->name }}</p>
-                  <hr>
-                  <p class="text-sm font-semibold leading-normal text-violet-700 mb-1">No. Resi</p>
-                  <div class="mx-auto flex flex-row gap-x-2 items-center">
-                    <p id="resi-text" class="text-sm leading-normal bg-slate-100 text-gray-500 px-4 py-2 w-fit rounded-md">{{ $submission->receipt }}</p>                    
-                    <a href="" id="copy-button" class="flex items-center bg-slate-100 px-2 rounded-md py-2">
-
-                      <!-- icon awal -->
-
-                      <svg id="copy-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7.99805 16H11.998M7.99805 11H15.998" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M7.5 3.5C5.9442 3.54667 5.01661 3.71984 4.37477 4.36227C3.49609 5.24177 3.49609 6.6573 3.49609 9.48836V15.9944C3.49609 18.8255 3.49609 20.241 4.37477 21.1205C5.25345 22 6.66767 22 9.49609 22H14.4961C17.3245 22 18.7387 22 19.6174 21.1205C20.4961 20.241 20.4961 18.8255 20.4961 15.9944V9.48836C20.4961 6.6573 20.4961 5.24177 19.6174 4.36228C18.9756 3.71984 18.048 3.54667 16.4922 3.5" stroke="#6B7280" stroke-width="1.5"/>
-                        <path d="M7.49609 3.75C7.49609 2.7835 8.2796 2 9.24609 2H14.7461C15.7126 2 16.4961 2.7835 16.4961 3.75C16.4961 4.7165 15.7126 5.5 14.7461 5.5H9.24609C8.2796 5.5 7.49609 4.7165 7.49609 3.75Z" stroke="#6B7280" stroke-width="1.5" stroke-linejoin="round"/>
-                      </svg>                                      
-                                                                                                                                   
-                      <!-- icon akhir -->                                           
-                      
-                      <svg id="checked-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
-                        <path d="M7.99805 16H11.998M7.99805 11H15.998" stroke="#640EF1" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M7.5 3.5C5.9442 3.54667 5.01661 3.71984 4.37477 4.36227C3.49609 5.24177 3.49609 6.6573 3.49609 9.48836V15.9944C3.49609 18.8255 3.49609 20.241 4.37477 21.1205C5.25345 22 6.66767 22 9.49609 22H14.4961C17.3245 22 18.7387 22 19.6174 21.1205C20.4961 20.241 20.4961 18.8255 20.4961 15.9944V9.48836C20.4961 6.6573 20.4961 5.24177 19.6174 4.36228C18.9756 3.71984 18.048 3.54667 16.4922 3.5" stroke="#640EF1" stroke-width="1.5"/>
-                        <path d="M7.49609 3.75C7.49609 2.7835 8.2796 2 9.24609 2H14.7461C15.7126 2 16.4961 2.7835 16.4961 3.75C16.4961 4.7165 15.7126 5.5 14.7461 5.5H9.24609C8.2796 5.5 7.49609 4.7165 7.49609 3.75Z" stroke="#640EF1" stroke-width="1.5" stroke-linejoin="round"/>
-                      </svg>
-                                              
-                    </a>
-                  </div>
-                </div>
-
                 <div class="mt-2 flex items-center justify-center gap-x-6">
                   <a href="{{ route('front.index') }}">
-                    <button class="text-sm font-semibold leading-6 text-gray-900">Beranda</button>
-                  </a>
-                  <a href="{{ route('front.status') }}">
-                    <button class="rounded-full bg-violet-700 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cek status</button>
+                    <button class="rounded-full bg-violet-700 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Beranda</button>
                   </a>
                 </div>
               </div>       
