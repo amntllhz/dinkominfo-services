@@ -19,4 +19,9 @@ class Instansi extends Model
     {
         return $this->hasMany(Report::class);
     }
+
+    public function requestSubmissions()
+    {
+        return $this->hasMany(RequestSubmission::class);
+    }
 }

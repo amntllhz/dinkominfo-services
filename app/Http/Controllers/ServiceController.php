@@ -7,6 +7,7 @@ use App\Http\Requests\RequestDomain;
 use App\Http\Requests\RequestHosting;
 use App\Http\Requests\RequestReport;
 use App\Http\Requests\RequestVPS;
+use App\Models\Instansi;
 use App\Models\Report;
 use App\Models\ReqDetailVPS;
 use App\Models\RequestSubmission;
@@ -20,13 +21,14 @@ class ServiceController extends Controller
     public function showForm($slug)
     {
         $service = Service::where('slug', $slug)->firstOrFail();
+        $instansi = Instansi::all();
 
         // Logika untuk menentukan view yang sesuai berdasarkan slug
         $viewName = 'forms.' . $slug;
 
         // Periksa apakah view exists
         if (view()->exists($viewName)) {
-            return view($viewName, compact('service'));
+            return view($viewName, compact('service', 'instansi'));
         }
 
         // Jika view tidak ditemukan, gunakan view default atau tampilkan error
@@ -54,7 +56,7 @@ class ServiceController extends Controller
             $validated = $request->validated();
 
             $validated['applicant'] = $applicant;
-            $validated['instansi'] = $instansi;
+            $validated['instansi_id'] = $instansi;
             $validated['email'] = $email;
             $validated['phone'] = $phone;
             $validated['service_id'] = $service_id;
@@ -98,7 +100,7 @@ class ServiceController extends Controller
             $validated = $request->validated();
 
             $validated['applicant'] = $applicant;
-            $validated['instansi'] = $instansi;
+            $validated['instansi_id'] = $instansi;
             $validated['email'] = $email;
             $validated['phone'] = $phone;
             $validated['service_id'] = $service_id;
@@ -124,52 +126,44 @@ class ServiceController extends Controller
 
     public function handleFormSubmissionDomain(RequestDomain $request)
     {
-        $applicant = $request->applicant;
-        $instansi = $request->instansi;
-        $email = $request->email;
-        $phone = $request->phone;
-        $app_name = $request->app_name;
-        $desc_name = $request->desc_name;
-        $site = $request->site;
-        $ip = $request->ip;
-        $add_inform = $request->add_inform;
-        $service_id = 3;
-
         $submission_id = null;
 
-        DB::transaction(function () use ($request, $applicant, $instansi, $email, $phone, $app_name, $desc_name, $site, $ip, $add_inform, $service_id, &$submission_id) {
+        DB::transaction(function () use ($request, &$submission_id) {
             $validated = $request->validated();
 
-            $validated['applicant'] = $applicant;
-            $validated['instansi'] = $instansi;
-            $validated['email'] = $email;
-            $validated['phone'] = $phone;
-            $validated['service_id'] = $service_id;
+            $newReqDomain = RequestSubmission::create([
+                'applicant' => $validated['applicant'],
+                'instansi_id' => $validated['instansi'],
+                'email' => $validated['email'],
+                'phone' => $validated['phone'],
+                'service_id' => 3,
+            ]);
 
-            $newRequestSubmission = RequestSubmission::create($validated);
-            $submission_id = $newRequestSubmission->id;
+            $submission_id = $newReqDomain->id;
 
-            $validated['request_submission_id'] = $submission_id;
-            $validated['app_name'] = $app_name;
-            $validated['desc_name'] = $desc_name;
-            $validated['site'] = $site;
-            $validated['ip'] = $ip;
+            $domainData = [
+                'request_submission_id' => $submission_id,
+                'app_name' => $validated['app_name'],
+                'desc_name' => $validated['desc_name'],
+                'site' => $validated['site'],
+                'ip' => $validated['ip'],
+                'add_inform' => $validated['add_inform'],
+            ];
 
-
-            $validated['add_inform'] = $add_inform;
             if ($request->hasFile('document')) {
                 $docPath = $request->file('document')->store('documents/domain', 'public');
-                $validated['document'] = $docPath;
+                $domainData['document'] = $docPath;
             }
 
-            $newRequestSubmission->reqDetailDomains()->create($validated);
+            $newReqDomain->reqDetailDomains()->create($domainData);
         });
         return redirect()->route('forms.success', $submission_id);
     }
 
-
     public function handleFormSubmissionClearance(RequestClearance $request)
     {
+
+
         $submission_id = null;
 
         DB::transaction(function () use ($request, &$submission_id) {
@@ -177,7 +171,7 @@ class ServiceController extends Controller
 
             $newRequestSubmission = RequestSubmission::create([
                 'applicant' => $validated['applicant'],
-                'instansi' => $validated['instansi'],
+                'instansi_id' => $validated['instansi'],
                 'email' => $validated['email'],
                 'phone' => $validated['phone'],
                 'service_id' => 4, // Assuming 4 is the service_id for clearance
@@ -204,11 +198,6 @@ class ServiceController extends Controller
             }
 
             // dd($clearanceData);
-
-
-
-
-
             $newRequestSubmission->reqDetailClearances()->create($clearanceData);
         });
 

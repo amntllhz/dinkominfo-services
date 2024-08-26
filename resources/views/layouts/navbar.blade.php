@@ -32,7 +32,7 @@
         <a href="{{ route('front.index') }}" class="text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Beranda</a>
         </li>  
         <li>
-        <a href="{{ route('front.services') }}" class="text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Layanan</a>
+        <a href="{{ route('front.index') }}#services" class="text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Layanan</a>
         </li>          
         <li>
         <a href="{{ route('front.status') }}" class="text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Cek Status</a>
@@ -56,7 +56,7 @@
             <a href="{{ route('front.index') }}" class="block text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Beranda</a>
         </li>
         <li>
-            <a href="{{ route('front.services') }}" class="block text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Layanan</a>
+            <a href="{{ route('front.index') }}#services" class="block text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Layanan</a>
         </li>
         <li>
             <a href="{{ route('front.status') }}" class="block text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Cek Status</a>
@@ -74,7 +74,7 @@
             <a href="{{ route('front.index') }}" class="block text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Beranda</a>
         </li>
         <li>
-            <a href="{{ route('front.services') }}" class="block text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Layanan</a>
+            <a href="{{ route('front.index') }}#services" class="block text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Layanan</a>
         </li>
         <li>
             <a href="{{ route('front.status') }}" class="block text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Cek Status</a>

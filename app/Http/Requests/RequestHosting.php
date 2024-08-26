@@ -23,7 +23,7 @@ class RequestHosting extends FormRequest
     {
         return [
             'applicant' => 'required|string|max:255',
-            'instansi' => 'required|string|max:255',
+            'instansi' => 'required|int',
             'email' => 'required|email',
             'phone' => 'required|numeric',
             'cpu' => 'required|string|max:255',

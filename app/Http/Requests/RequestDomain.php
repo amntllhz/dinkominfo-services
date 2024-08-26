@@ -23,7 +23,7 @@ class RequestDomain extends FormRequest
     {
         return [
             'applicant' => 'required|string|max:255',
-            'instansi' => 'required|string|max:255',
+            'instansi' => 'required|int',
             'email' => 'required|email',
             'phone' => 'required|numeric',
             'app_name' => 'required|string|max:255',

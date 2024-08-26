@@ -40,11 +40,10 @@ class RequestSubmissionResource extends Resource
                                 ->required()
                                 ->placeholder('Masukkan nama lengkap')
                                 ->columnSpan(1),
-                            Forms\Components\TextInput::make('instansi')
-                                ->label('Instansi')
-                                ->required()
-                                ->placeholder('Masukkan instansi')
-                                ->columnSpan(1),
+                            Forms\Components\Select::make('instansi_id')
+                                ->label('Pilih Instansi')
+                                ->relationship('instansi', 'name')
+                                ->required(),
                             Forms\Components\TextInput::make('email')
                                 ->label('Email')
                                 ->required()

@@ -23,11 +23,11 @@ class RequestVPS extends FormRequest
     {
         return [
             'applicant' => 'required|string|max:255',
-            'instansi' => 'required|string|max:255',
+            'instansi' => 'required|int',
             'email' => 'required|email',
             'phone' => 'required|numeric',
             'cpu' => 'required|string|max:255',
-            // 'os' => 'required|string|max:255',
+            'os' => 'required|string|max:255',
             'ram' => 'required|string|max:255',
             'storage' => 'required|string|max:255',
             'purpose' => 'required|string|max:255',

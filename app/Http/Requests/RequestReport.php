@@ -32,4 +32,13 @@ class RequestReport extends FormRequest
             'proof.*' => 'file|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'phone' => 'Nomor Telepon harus berupa angka.',
+            'proof.*.mimes' => 'Bukti Screenshot harus bertipe: jpeg, png, jpg, gif.',
+            'proof.*.max' => 'Bukti Screenshot tidak boleh lebih dari 2MB.',
+        ];
+    }
 }

@@ -17,7 +17,7 @@ class RequestSubmission extends Model
         'applicant',
         'email',
         'phone',
-        'instansi',
+        'instansi_id',
         'status',
         'receipt',
         'service_id',
@@ -33,6 +33,10 @@ class RequestSubmission extends Model
         });
     }
 
+    public function instansi()
+    {
+        return $this->belongsTo(Instansi::class);
+    }
 
     public function service(): BelongsTo
     {
