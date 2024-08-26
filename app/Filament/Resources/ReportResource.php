@@ -48,6 +48,7 @@ class ReportResource extends Resource
                     ->required(),
                 Forms\Components\FileUpload::make('proof')
                     ->label('Proof')
+                    ->multiple()
                     ->required(),
             ]);
     }

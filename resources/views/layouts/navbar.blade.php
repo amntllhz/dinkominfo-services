@@ -37,9 +37,6 @@
         <li>
         <a href="{{ route('front.status') }}" class="text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Cek Status</a>
         </li>
-        <li>
-        <a href="{{ route('front.about') }}" class="text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Tentang</a>
-        </li>
     </ul>
     
     <!-- Hamburger Button -->
@@ -64,9 +61,6 @@
         <li>
             <a href="{{ route('front.status') }}" class="block text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Cek Status</a>
         </li>
-        <li>
-            <a href="#about" class="block text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Tentang</a>
-        </li>
         </ul>
     </div>
 
@@ -84,9 +78,6 @@
         </li>
         <li>
             <a href="{{ route('front.status') }}" class="block text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Cek Status</a>
-        </li>
-        <li>
-            <a href="#about" class="block text-base font-semibold text-violet-700 hover:bg-slate-200 p-2 rounded-md">Tentang</a>
         </li>
         </ul>
     </div>
