@@ -3,6 +3,7 @@
 @section('title', 'Cek Status')
 
 @section('content')
+<p>tes</p>
     <section class="max-w-6xl mx-auto py-12 sm:max-w-xs md:max-w-lg">
         <div class="flex flex-col gap-y-2 text-center mb-10">
             <h3 class="text-5xl text-indigo-950 font-clash font-bold sm:text-3xl">Status Pengajuan</h3>

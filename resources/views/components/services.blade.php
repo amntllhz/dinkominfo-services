@@ -13,7 +13,7 @@
             <h3 class="font-bold text-xl">{{ $service->name }}</h3>
             <p class="text-base leading-normal text-gray-500">{{ $service->description }}</p>
             </div>        
-            <a href="{{ route('front.service.form', ['slug' => $service->slug]) }}" class="font-semibold text-violet-700 hover:bg-slate-200 p-2 w-fit rounded-md">Pengajuan</a>
+            <a href="{{ route('form.layanan', ['slug' => $service->slug]) }}" class="font-semibold text-violet-700 hover:bg-slate-200 p-2 w-fit rounded-md">Pengajuan</a>
         </div>
         @endforeach
         </div>

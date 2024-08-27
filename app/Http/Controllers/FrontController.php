@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Instansi;
 use App\Models\RequestSubmission;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -13,30 +14,26 @@ class FrontController extends Controller
         $services = Service::all();
 
         $questions = [
-            "Hai?",
-            "Hai?",
-            "Is there a Figma file available?",
-            "What are the differences between Flowbite and Tailwind UI?"
+            "Apa itu Layanan Digital?",
+            "Bagaimana cara mengajukan layanan?",
+            "Apakah saya bisa mengecek status pengajuan?",
+            "Apa saja layanan yang tersedia?"
         ];
 
         $answers = [
-            "Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.",
-            "Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.",
-            "Flowbite is first conceptualized and designed using the Figma software so everything you see in the library has a design equivalent in our Figma file.",
-            "The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product."
+            "Layanan Digital adalah sistem yang memudahkan OPD dalam pengajuan clearance, server, perangkat, serta dukungan untuk optimalisasi kinerja dan efisiensi.",
+            "Anda dapat mengajukan layanan melalui portal layanan kami yang tersedia 24 jam secara online.",
+            "Ya, Anda dapat mengecek status pengajuan Anda melalui portal layanan kami.",
+            "Layanan yang tersedia meliputi VPS, Hosting, Domain, dan Clearance untuk mendukung operasional OPD."
         ];
 
         return view('front.index', compact('services', 'questions', 'answers'));
-    }
-    public function tes()
-    {
-        $services = Service::all();
-        return view('front.tes', compact('services'));
     }
 
     public function services()
     {
         $services = Service::all();
+
         return view('front.services', compact('services'));
     }
 
@@ -62,4 +59,11 @@ class FrontController extends Controller
         }
         return view('front.status_details', compact('details'));
     }
+
+    // public function tes()
+    // {
+    //     $services = Service::all();
+    //     $instansi = Instansi::all();
+    //     return view('forms.form-services', compact('services', 'instansi'));
+    // }
 }

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReqSubmission;
 use App\Http\Requests\RequestClearance;
 use App\Http\Requests\RequestDomain;
 use App\Http\Requests\RequestHosting;
 use App\Http\Requests\RequestReport;
+use App\Http\Requests\RequestSubmission as RequestsRequestSubmission;
 use App\Http\Requests\RequestVPS;
 use App\Models\Instansi;
 use App\Models\Report;
@@ -35,138 +37,34 @@ class ServiceController extends Controller
         return view('forms.default', compact('service'));
     }
 
-
-    public function handleFormSubmissionVPS(RequestVPS $request)
+    public function viewForm($slug)
     {
-        $applicant = $request->applicant;
-        $instansi = $request->instansi;
-        $email = $request->email;
-        $phone = $request->phone;
-        $cpu = $request->cpu;
-        $ram = $request->ram;
-        $storage = $request->storage;
-        $os = $request->os;
-        $purpose = $request->purpose;
-        $add_inform = $request->add_inform;
-        $service_id = 1;
+        $service = Service::where('slug', $slug)->get();
+        $instansi = Instansi::all();
 
-        $submission_id = null;
+        // Logika untuk menentukan view yang sesuai berdasarkan slug
+        $viewName = 'forms.' . $slug;
 
-        DB::transaction(function () use ($request, $applicant, $instansi, $email, $phone, $cpu, $ram, $storage, $purpose, $os, $add_inform, $service_id, &$submission_id) {
-            $validated = $request->validated();
 
-            $validated['applicant'] = $applicant;
-            $validated['instansi_id'] = $instansi;
-            $validated['email'] = $email;
-            $validated['phone'] = $phone;
-            $validated['service_id'] = $service_id;
+        // Periksa apakah view exists
+        if (view()->exists($viewName)) {
+            return view('forms.form-services', compact('service', 'instansi'));
+        }
 
-            $newRequestSubmission = RequestSubmission::create($validated);
-            $submission_id = $newRequestSubmission->id;
-
-            $validated['request_submission_id'] = $submission_id;
-            $validated['cpu'] = $cpu;
-            $validated['ram'] = $ram;
-            $validated['storage'] = $storage;
-            $validated['os'] = $os;
-            $validated['purpose'] = $purpose;
-            $validated['add_inform'] = $add_inform;
-            if ($request->hasFile('document')) {
-                $docPath = $request->file('document')->store('documents/vps', 'public');
-                $validated['document'] = $docPath;
-            }
-
-            $newRequestSubmission->reqDetailVPSs()->create($validated);
-        });
-        return redirect()->route('forms.success', $submission_id);
+        return view('forms.form-services', compact('service', 'instansi'));
     }
 
-    public function handleFormSubmissionHosting(RequestHosting $request)
-    {
-        $applicant = $request->applicant;
-        $instansi = $request->instansi;
-        $email = $request->email;
-        $phone = $request->phone;
-        $cpu = $request->cpu;
-        $ram = $request->ram;
-        $storage = $request->storage;
-        $purpose = $request->purpose;
-        $add_inform = $request->add_inform;
-        $service_id = 2;
-
-        $submission_id = null;
-
-        DB::transaction(function () use ($request, $applicant, $instansi, $email, $phone, $cpu, $ram, $storage, $purpose, $add_inform, $service_id, &$submission_id) {
-            $validated = $request->validated();
-
-            $validated['applicant'] = $applicant;
-            $validated['instansi_id'] = $instansi;
-            $validated['email'] = $email;
-            $validated['phone'] = $phone;
-            $validated['service_id'] = $service_id;
-
-            $newRequestSubmission = RequestSubmission::create($validated);
-            $submission_id = $newRequestSubmission->id;
-
-            $validated['request_submission_id'] = $submission_id;
-            $validated['cpu'] = $cpu;
-            $validated['ram'] = $ram;
-            $validated['storage'] = $storage;
-            $validated['purpose'] = $purpose;
-            $validated['add_inform'] = $add_inform;
-            if ($request->hasFile('document')) {
-                $docPath = $request->file('document')->store('documents/hosting', 'public');
-                $validated['document'] = $docPath;
-            }
-
-            $newRequestSubmission->reqDetailHostings()->create($validated);
-        });
-        return redirect()->route('forms.success', $submission_id);
-    }
-
-    public function handleFormSubmissionDomain(RequestDomain $request)
+    public function submitForm(ReqSubmission $request)
     {
         $submission_id = null;
 
-        DB::transaction(function () use ($request, &$submission_id) {
-            $validated = $request->validated();
+        $service_id = $request->service_id;
 
-            $newReqDomain = RequestSubmission::create([
-                'applicant' => $validated['applicant'],
-                'instansi_id' => $validated['instansi'],
-                'email' => $validated['email'],
-                'phone' => $validated['phone'],
-                'service_id' => 3,
-            ]);
+        $service = Service::where('id', $service_id)->firstOrFail();
 
-            $submission_id = $newReqDomain->id;
+        $slug = Service::where('id', $service_id)->firstOrFail()->slug;
 
-            $domainData = [
-                'request_submission_id' => $submission_id,
-                'app_name' => $validated['app_name'],
-                'desc_name' => $validated['desc_name'],
-                'site' => $validated['site'],
-                'ip' => $validated['ip'],
-                'add_inform' => $validated['add_inform'],
-            ];
-
-            if ($request->hasFile('document')) {
-                $docPath = $request->file('document')->store('documents/domain', 'public');
-                $domainData['document'] = $docPath;
-            }
-
-            $newReqDomain->reqDetailDomains()->create($domainData);
-        });
-        return redirect()->route('forms.success', $submission_id);
-    }
-
-    public function handleFormSubmissionClearance(RequestClearance $request)
-    {
-
-
-        $submission_id = null;
-
-        DB::transaction(function () use ($request, &$submission_id) {
+        DB::transaction(function () use ($request, $service, $service_id, $slug, &$submission_id) {
             $validated = $request->validated();
 
             $newRequestSubmission = RequestSubmission::create([
@@ -174,38 +72,79 @@ class ServiceController extends Controller
                 'instansi_id' => $validated['instansi'],
                 'email' => $validated['email'],
                 'phone' => $validated['phone'],
-                'service_id' => 4, // Assuming 4 is the service_id for clearance
+                'service_id' => $service_id,
             ]);
 
             $submission_id = $newRequestSubmission->id;
 
-            $clearanceData = [
-                'request_submission_id' => $submission_id,
-                'purpose' => $validated['purpose'],
-                'title_req' => $validated['title_req'],
-                'add_inform' => $validated['add_inform'],
-            ];
+            switch ($service->slug) {
+                case str_contains($service->slug, 'domain'):
+                    $domainData = [
+                        'request_submission_id' => $submission_id,
+                        'app_name' => $validated['app_name'],
+                        'desc_name' => $validated['desc_name'],
+                        'site' => $validated['site'],
+                        'ip' => $validated['ip'],
+                        'add_inform' => $validated['add_inform'],
+                    ];
 
-            // Handle multiple file uploads
-            if ($request->hasFile('documents')) {
-                $documentPaths = [];
-                foreach ($request->file('documents') as $document) {
-                    $path = $document->store('documents/clearance', 'public');
-                    $documentPaths[] = $path;
-                }
-                // Store file paths as JSON array
-                $clearanceData['documents'] = $documentPaths;
+                    if ($request->hasFile('document')) {
+                        $docPath = $request->file('document')->store('documents/domain', 'public');
+                        $domainData['document'] = $docPath;
+                    }
+
+                    $newRequestSubmission->reqDetailDomains()->create($domainData);
+                    break;
+
+                case str_contains($service->slug, 'clearance'):
+                    $clearanceData = [
+                        'request_submission_id' => $submission_id,
+                        'purpose' => $validated['purpose'],
+                        'title_req' => $validated['title_req'],
+                        'add_inform' => $validated['add_inform'],
+                    ];
+
+                    // Handle multiple file uploads
+                    if ($request->hasFile('documents')) {
+                        $documentPaths = [];
+                        foreach ($request->file('documents') as $document) {
+                            $path = $document->store('documents/clearance', 'public');
+                            $documentPaths[] = $path;
+                        }
+                        // Store file paths as JSON array
+                        $clearanceData['documents'] = $documentPaths;
+                    }
+
+                    $newRequestSubmission->reqDetailClearances()->create($clearanceData);
+                    break;
+
+                case str_contains($service->slug, 'vps'):
+                case str_contains($service->slug, 'hosting'):
+                    $vpsData = [
+                        'request_submission_id' => $submission_id,
+                        'cpu' => $validated['cpu'],
+                        'ram' => $validated['ram'],
+                        'storage' => $validated['storage'],
+                        'purpose' => $validated['purpose'],
+                        'add_inform' => $validated['add_inform'],
+                    ];
+
+                    if ($request->hasFile('document')) {
+                        $docPath = $request->file('document')->store('documents/' . $slug, 'public');
+                        $vpsData['document'] = $docPath;
+                    }
+
+                    if ($service->slug === 'layanan-vps') {
+                        $vpsData['os'] = $validated['os'];
+                    }
+
+                    $newRequestSubmission->reqDetailVPSs()->create($vpsData);
+                    break;
             }
-
-            // dd($clearanceData);
-            $newRequestSubmission->reqDetailClearances()->create($clearanceData);
         });
-
-
 
         return redirect()->route('forms.success', $submission_id);
     }
-
 
     public function success($submission_id)
     {

@@ -20,13 +20,10 @@ class ReportController extends Controller
 
     public function handlFormReport(RequestReport $request)
     {
-        // dd($request->all());
         $report_id = null;
 
         DB::transaction(function () use ($request, &$report_id) {
             $validated = $request->validated();
-
-
 
             // Handle multiple file uploads
             if ($request->hasFile('proof')) {
@@ -50,9 +47,6 @@ class ReportController extends Controller
             ]);
 
             $report_id = $newReport->id;
-
-            // dd($clearanceData);
-            // $newReport->create($validated);
         });
 
 

@@ -235,14 +235,6 @@ class RequestSubmissionResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-                // Tables\Actions\Action::make('view')
-                //     ->label('View')
-                //     ->icon('heroicon-o-eye')
-                //     ->form([])
-                //     ->modalHeading('Detail View')
-                //     ->modalContent(fn($record) => view('filament.view', [
-                //         'record' => $record,
-                //     ])),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\Action::make('updateStatus')
                     ->label('Update Status')
