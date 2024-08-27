@@ -24,7 +24,7 @@
             <div class="space-y-12">
               
             <!-- applicant -->
-              @include('layouts.applicant')
+              <x-applicant :instansi="$instansi"></x-applicant>
               
             <!-- data -->
               <div class="pb-12">

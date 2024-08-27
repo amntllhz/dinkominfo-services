@@ -11,14 +11,14 @@
   </head>
 <body class="bg-back">
 
-    @include('layouts.navbar')
+    <x-nav-bar></x-nav-bar>
     
 
     <main class="flex-grow">
         @yield('content')
     </main>
 
-    @include('layouts.footer')
+    <x-footer></x-footer>
 
     @yield('scripts')
 

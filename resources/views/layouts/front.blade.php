@@ -7,17 +7,19 @@
     <link rel="stylesheet" href="{{ asset('style.css') }}">
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700,1&display=swap" rel="stylesheet">
     <script src="{{ asset('scripts.js') }}"></script>
+    @vite(['resources/css/app.css','resources/js/app.js'])
   </head>
 <body class="bg-back">
 
-    @include('layouts.navbar')
+    {{-- @include('layouts.navbar') --}}
+    <x-nav-bar></x-nav-bar>
     
 
     <main class="flex-grow">
         @yield('content')
     </main>
 
-    @include('layouts.footer')
+    <x-footer></x-footer>
 
     @yield('scripts')
 

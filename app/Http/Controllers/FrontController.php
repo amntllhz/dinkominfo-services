@@ -11,7 +11,27 @@ class FrontController extends Controller
     public function index()
     {
         $services = Service::all();
-        return view('front.index', compact('services'));
+
+        $questions = [
+            "Hai?",
+            "Hai?",
+            "Is there a Figma file available?",
+            "What are the differences between Flowbite and Tailwind UI?"
+        ];
+
+        $answers = [
+            "Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.",
+            "Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.",
+            "Flowbite is first conceptualized and designed using the Figma software so everything you see in the library has a design equivalent in our Figma file.",
+            "The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product."
+        ];
+
+        return view('front.index', compact('services', 'questions', 'answers'));
+    }
+    public function tes()
+    {
+        $services = Service::all();
+        return view('front.tes', compact('services'));
     }
 
     public function services()
