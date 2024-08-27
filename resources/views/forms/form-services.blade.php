@@ -61,7 +61,7 @@
         <input type="hidden" name="service_id" value="{{ $service->id }}">
         <div class="space-y-12">
             <!-- Applicant -->
-            <x-applicant :instansi="$instansi"></x-applicant>
+            <x-applicant :instansi="$instansi">Pemohon</x-applicant>
 
             <!-- Service-specific component -->
             @if (str_contains($service->slug, 'vps'))

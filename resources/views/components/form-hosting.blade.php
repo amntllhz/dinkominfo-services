@@ -6,21 +6,21 @@
                     <div class="col-span-3 sm:col-span-1">
                       <label for="cpu" class="block text-sm font-medium leading-6 text-gray-900">CPU <span class="text-red-500">*</span></label>
                       <div class="mt-2">
-                        <input type="text" name="cpu" id="cpu" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                        <input type="text" name="cpu" id="cpu" placeholder="Masukkan jumlah core CPU" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                       </div>
                     </div>
 
                     <div class="col-span-3 sm:col-span-1">
                         <label for="ram" class="block text-sm font-medium leading-6 text-gray-900">RAM<span class="text-red-500">*</span></label>
                         <div class="mt-2">
-                          <input type="text" name="ram" id="ram" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                          <input type="text" name="ram" id="ram" placeholder="Masukkan jumlah ukuran RAM" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                         </div>
                     </div>
                     
                     <div class="col-span-3 sm:col-span-1">
                       <label for="storage" class="block text-sm font-medium leading-6 text-gray-900">Storage <span class="text-red-500">*</span></label>
                       <div class="mt-2">
-                        <input type="text" name="storage" id="storage" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+                        <input type="text" name="storage" id="storage" placeholder="Masukkan jumlah ukuran Storage" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
                       </div>
                     </div>
           
@@ -42,7 +42,11 @@
           
                   <div class="col-span-full">
                     <label for="document" class="block text-sm font-medium leading-6 text-gray-900">Surat Permohonan <span class="text-red-500">*</span></label>
-                    <input class="block w-full rounded-md border-0 p-6 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 " name="document" id="document" type="file" required>
+                    {{-- <input class="block w-full rounded-md border-0 p-6 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 " name="document" id="document" type="file" required> --}}
+                    
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="document" name="document" type="file" required>
+
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PDF, DOCX or DOC (MAX. 10MB).</p>
                   
                   </div>
 

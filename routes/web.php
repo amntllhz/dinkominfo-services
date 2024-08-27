@@ -19,7 +19,7 @@ Route::get('/services', [FrontController::class, 'services'])
 Route::get('/cek-status', [FrontController::class, 'cekStatus'])
     ->name('front.status');
 
-Route::post('/cek-status/details', [FrontController::class, 'cekStatus_details'])
+Route::post('/cek-status', [FrontController::class, 'cekStatus_details'])
     ->name('front.status.details');
 
 Route::get('/service/{slug}', [ServiceController::class, 'viewForm'])

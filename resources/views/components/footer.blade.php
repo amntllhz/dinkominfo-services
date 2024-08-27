@@ -21,7 +21,7 @@
         </clipPath>
         </defs>
         </svg>            
-        <p class="text-base leading-loose text-gray-500 sm:text-sm">Bidang E-Goverment <br> Dinas Komunikasi dan Informatika <br> Kajen Kabupaten Pekalongan 51161<br> Jawa Tengah, Indonesia  </p>
+        <p class="text-base leading-loose text-gray-500 sm:text-sm">&copy;2024 - Bidang E-Goverment <br> Dinas Komunikasi dan Informatika <br> Kajen Kabupaten Pekalongan 51161<br> Jawa Tengah, Indonesia  </p>
         <div class="flex flex-row gap-x-4">
 
         <!-- email -->
@@ -140,12 +140,12 @@
             </a>
         </li>
         <li>
-            <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+            <a href="{{ route('form.report') }}" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
             Lapor Kendala Layanan
             </a>
         </li>
         <li>
-            <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+            <a href="{{ route('form.report') }}" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
             Laporkan Penyalahgunaan
             </a>
         </li>

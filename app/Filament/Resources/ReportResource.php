@@ -49,6 +49,8 @@ class ReportResource extends Resource
                 Forms\Components\FileUpload::make('proof')
                     ->label('Proof')
                     ->multiple()
+                    ->openable()
+                    ->downloadable()
                     ->required(),
             ]);
     }

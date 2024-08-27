@@ -27,7 +27,7 @@ class RequestReport extends FormRequest
             'service' => 'required|int',
             'email' => 'required|email',
             'phone' => 'required|numeric',
-            'report' => 'required|string|max:255',
+            'report' => 'required|string|max:500',
             'proof' => 'required|array',
             'proof.*' => 'file|mimes:jpeg,png,jpg,gif|max:2048',
         ];
@@ -36,6 +36,7 @@ class RequestReport extends FormRequest
     public function messages(): array
     {
         return [
+            'report' => 'Laporan terlalu panjang.',
             'phone' => 'Nomor Telepon harus berupa angka.',
             'proof.*.mimes' => 'Bukti Screenshot harus bertipe: jpeg, png, jpg, gif.',
             'proof.*.max' => 'Bukti Screenshot tidak boleh lebih dari 2MB.',
