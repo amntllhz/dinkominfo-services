@@ -79,22 +79,22 @@
         <h3 class="text-white font-bold text-lg">Informasi Publik</h3>
         <ul class="flex flex-col gap-y-4">
         <li>
-            <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+            <a href="https://dinkominfo.pekalongankab.go.id/index.php/publikasi/berita" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
             Berita
             </a>
         </li>
         <li>
-            <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+            <a href="https://dinkominfo.pekalongankab.go.id/index.php/publikasi/artikel" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
             Artikel
             </a>
         </li>
         <li>
-            <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+            <a href="https://home.data.pekalongankab.go.id/" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
             Open Data
             </a>
         </li>
         <li>
-            <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+            <a href="https://dinkominfo.pekalongankab.go.id/index.php/publikasi/pengumuman" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
             Pengumuman
             </a>
         </li>
@@ -107,22 +107,22 @@
         <h3 class="text-white font-bold text-lg">Tentang</h3>
         <ul class="flex flex-col gap-y-4">
         <li>
-            <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+            <a href="https://dinkominfo.pekalongankab.go.id/" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
             Profil
             </a>
         </li>
         <li>
-            <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+            <a href="https://dinkominfo.pekalongankab.go.id/index.php/profil/visi-misi" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
             Visi & Misi
             </a>
         </li>
         <li>
-            <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+            <a href="https://dinkominfo.pekalongankab.go.id/index.php/profil/struktur-organisasi" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
             Struktur Organisasi
             </a>
         </li>
         <li>
-            <a href="#" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+            <a href="https://dinkominfo.pekalongankab.go.id/index.php/profil/data-peg" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
             Data Pegawai
             </a>
         </li>

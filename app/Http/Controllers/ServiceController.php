@@ -134,7 +134,7 @@ class ServiceController extends Controller
                         $vpsData['document'] = $docPath;
                     }
 
-                    if ($service->slug === 'layanan-vps') {
+                    if (str_contains($service->slug, 'vps')) {
                         $vpsData['os'] = $validated['os'];
                     }
 

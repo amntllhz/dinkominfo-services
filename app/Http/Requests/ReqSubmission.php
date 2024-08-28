@@ -32,7 +32,7 @@ class ReqSubmission extends FormRequest
         $service = Service::findOrFail($this->input('service_id'));
 
         switch ($service->slug) {
-            case 'layanan-domain':
+            case str_contains($service->slug, 'domain'):
                 $rules += [
                     'app_name' => 'required|string|max:255',
                     'desc_name' => 'required|string|max:255',
@@ -43,7 +43,7 @@ class ReqSubmission extends FormRequest
 
                 ];
                 break;
-            case 'layanan-clearance':
+            case str_contains($service->slug, 'clearance'):
                 $rules += [
                     'title_req' => 'required|string|max:255',
                     'purpose' => 'required|string',
@@ -52,8 +52,8 @@ class ReqSubmission extends FormRequest
                     'documents.*' => 'file|mimes:pdf,doc,docx|max:10240',
                 ];
                 break;
-            case 'layanan-vps':
-            case 'layanan-hosting':
+            case str_contains($service->slug, 'vps'):
+            case str_contains($service->slug, 'hosting'):
                 $rules += [
                     'cpu' => 'required|string|max:255',
                     'ram' => 'required|string|max:255',
@@ -62,7 +62,7 @@ class ReqSubmission extends FormRequest
                     'add_inform' => 'nullable|string|max:255',
                     'document' => 'required|file|mimes:pdf,docx|max:10240', // Max 10MB
                 ];
-                if ($service->slug === 'layanan-vps') {
+                if (str_contains($service->slug, 'vps')) {
                     $rules['os'] = 'required|string|max:255';
                 }
                 break;

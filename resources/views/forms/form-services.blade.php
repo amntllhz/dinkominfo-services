@@ -56,7 +56,7 @@
         <p class="text-base leading-loose text-gray-500 sm:text-sm">Kemudahan Pengajuan yang juga dilengkapi dengan Panduan Penggunaan</p>
     </div>
     
-    <form method="POST" action="{{ route('form.submit') }}" enctype="multipart/form-data" class="mx-auto max-w-4xl">
+    <form method="POST" id="formRequest" action="{{ route('form.submit') }}" enctype="multipart/form-data" class="mx-auto max-w-4xl">
         @csrf
         <input type="hidden" name="service_id" value="{{ $service->id }}">
         <div class="space-y-12">
@@ -79,7 +79,7 @@
 
         <!-- Button -->
         <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+            <button type="button" id="buttonSubmit" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
             <button type="submit" class="rounded-full bg-violet-700 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
         </div>
     </form>
