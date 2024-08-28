@@ -6,11 +6,12 @@
     <title>@yield('title', 'Title')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('style.css') }}">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700,1&display=swap" rel="stylesheet">
     <script src="{{ asset('scripts.js') }}"></script>
     @vite(['resources/css/app.css','resources/js/app.js'])
   </head>
-<body class="bg-back">
+<body class="bg-back font-in font-feature-settings-cv11">
 
     <x-nav-bar></x-nav-bar>
     

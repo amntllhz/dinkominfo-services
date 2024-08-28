@@ -7,7 +7,7 @@
     <section class="max-w-6xl mx-auto py-12 sm:max-w-xs">
           <div class="mx-auto max-w-md">
             <div class="space-y-12">
-              <x-success-submit-report></x-success-submit-report>
+              <x-success-submit-service :submission="$submission"></x-success-submit-service>
           </div>
     </section>
   <!-- FORM -->

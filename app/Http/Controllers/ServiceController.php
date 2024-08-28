@@ -149,6 +149,6 @@ class ServiceController extends Controller
     public function success($submission_id)
     {
         $submission = RequestSubmission::findOrFail($submission_id);
-        return view('forms.success', compact('submission'));
+        return view('forms.success-service', compact('submission'));
     }
 }

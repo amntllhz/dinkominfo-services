@@ -1,5 +1,5 @@
 @props(['receipt'])
-<div class="flex flex-col gap-y-5 bg-white rounded-2xl p-6">
+<div class="flex flex-col gap-y-5 bg-white rounded-2xl  p-6">
   <div class="mx-auto mt-4">                  
     <svg width="185" height="124" viewBox="0 0 185 124" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M44.75 27C47.6375 27 50 24.57 50 21.6C50 18.63 47.6375 16.2 44.75 16.2H44.4875C44.4875 15.39 44.75 14.58 44.75 13.5C44.75 7.56 40.025 2.7 34.25 2.7C32.15 2.7 30.3125 3.24 28.475 4.32C27.6875 1.89 25.325 0 22.4375 0C18.7625 0 15.875 2.97 15.875 6.75C15.875 8.37 16.4 9.72 17.45 11.07C16.925 10.8 16.4 10.8 15.875 10.8C11.4125 10.8 8 14.31 8 18.9C8 23.49 11.4125 27 15.875 27H44.75Z" fill="#EDE0FF"/>

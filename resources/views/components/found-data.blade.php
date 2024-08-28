@@ -13,8 +13,7 @@
     <h3 class="text-center text-indigo-950 sm:text-xl text-3xl font-clash font-semibold mb-0">Detail Pengajuan {{ $details->service->name }}</h3>
     <p class="text-center text-slate-500 text-base sm:text-sm font-normal mt-0">No. Resi : {{ $details->receipt }}</p>
     
-    <div class="bg-slate-100 py-2 px-4 rounded-md mx-64 md:mx-10 sm:mx-auto">
-        
+    <div class="bg-slate-50 py-2 px-4 rounded-md mx-8 md:mx-2 sm:mx-1">
         <div class="mt-5 sm:mt-10">
             <ul class="mt-3 mb-3 flex flex-col">
                 <li class="inline-flex items-center gap-x-2 py-3 px-4 text-sm border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg">

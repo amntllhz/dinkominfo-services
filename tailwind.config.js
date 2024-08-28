@@ -34,5 +34,17 @@ module.exports = {
             // => @media (min-width: 1536px) { ... }
         },
     },
-    plugins: [require("flowbite/plugin")],
+    plugins: [
+        require("flowbite/plugin"),
+        function ({ addUtilities }) {
+            addUtilities(
+                {
+                    ".font-feature-settings-cv11": {
+                        "font-feature-settings": '"cv11"',
+                    },
+                },
+                ["responsive", "hover"]
+            );
+        },
+    ],
 };
