@@ -39,9 +39,9 @@
     <div class="col-span-3 sm:col-span-1">
     <label for="phone" class="block text-sm font-medium leading-6 text-gray-900">Nomor Telepon <span class="text-red-500">*</span></label>
     <div class="mt-2">
-        <input id="phone" value="{{ old('phone') }}" name="phone" type="text" inputmode="numeric" placeholder="Masukan Nomor Telepon" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
+        <input id="phone" value="{{ old('phone') }}" name="phone" type="text" inputmode="numeric" placeholder="Masukan Nomor Telepon" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-700 ">
         @if ($errors->has('phone'))
-        <div class="text-red-500">{{ $errors->first('phone') }}</div>
+            <x-alert>{{ $errors->first('phone') }}</x-alert>
         @endif
     </div>
     </div>  

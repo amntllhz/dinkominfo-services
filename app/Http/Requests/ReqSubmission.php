@@ -69,4 +69,14 @@ class ReqSubmission extends FormRequest
         }
         return $rules;
     }
+
+
+    public function messages(): array
+    {
+        return [
+            'document.mimes' => 'Dokumen harus bertipe: pdf,doc, atau docx',
+            'documents.*.mimes' => 'Dokumen harus bertipe: pdf,doc, atau docx',
+            'documents.*.max' => 'Dokumen tidak boleh lebih dari 10MB.',
+        ];
+    }
 }
