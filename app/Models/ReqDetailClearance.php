@@ -14,6 +14,7 @@ class ReqDetailClearance extends Model
         'request_submission_id',
         'purpose',
         'documents',
+        'title_req',
         'add_inform',
     ];
 

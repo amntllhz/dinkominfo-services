@@ -60,10 +60,73 @@ class FrontController extends Controller
         return view('front.status_details', compact('details'));
     }
 
-    // public function tes()
-    // {
-    //     $services = Service::all();
-    //     $instansi = Instansi::all();
-    //     return view('forms.form-services', compact('services', 'instansi'));
-    // }
+    public function contributor()
+    {
+
+        $interns = [
+            [
+                'fullname' => 'John Doe',
+                'name' => 'John',
+                'role' => 'Frontend Developer',
+                'major' => 'Informatika',
+                'university' => 'Universitas A',
+                'email' => 'a@gmail.com',
+                'avatar' => 'avatar.png',
+                'real' => 'real.png',
+            ],
+            [
+                'fullname' => 'Jane Smith',
+                'name' => 'Jane',
+                'role' => 'Frontend Developer',
+                'major' => 'Sistem Informasi',
+                'university' => 'Universitas B',
+                'email' => 'a@gmail.com',
+                'avatar' => 'avatar.png',
+                'real' => 'real.png',
+            ],
+            [
+                'fullname' => 'Mike Johnson',
+                'name' => 'Mike',
+                'role' => 'Frontend Developer',
+                'major' => 'Teknik Komputer',
+                'university' => 'Universitas C',
+                'email' => 'a@gmail.com',
+                'avatar' => 'avatar.png',
+                'real' => 'real.png',
+            ],
+            [
+                'fullname' => 'John Doe',
+                'name' => 'John',
+                'role' => 'Frontend Developer',
+                'major' => 'Informatika',
+                'university' => 'Universitas A',
+                'email' => 'a@gmail.com',
+                'avatar' => 'avatar.png',
+                'real' => 'real.png',
+            ],
+            [
+                'fullname' => 'Jane Smith',
+                'name' => 'Jane',
+                'role' => 'Frontend Developer',
+                'major' => 'Sistem Informasi',
+                'university' => 'Universitas B',
+                'email' => 'a@gmail.com',
+                'avatar' => 'avatar.png',
+                'real' => 'real.png',
+            ],
+            [
+                'fullname' => 'Mike Johnson',
+                'name' => 'Mike',
+                'role' => 'Frontend Developer',
+                'major' => 'Teknik Komputer',
+                'university' => 'Universitas C',
+                'email' => 'a@gmail.com',
+                'avatar' => 'avatar.png',
+                'real' => 'real.png',
+            ],
+        ];
+
+        // dd($interns);
+        return view('front.contributor', compact('interns'));
+    }
 }

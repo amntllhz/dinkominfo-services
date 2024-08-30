@@ -2,13 +2,17 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\ReportExporter;
 use App\Filament\Resources\ReportResource\Pages;
 use App\Filament\Resources\ReportResource\RelationManagers;
 use App\Models\Report;
+use Filament\Actions\Action;
+use Filament\Actions\ExportAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\ExportAction as ActionsExportAction;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -48,6 +52,8 @@ class ReportResource extends Resource
                     ->required(),
                 Forms\Components\FileUpload::make('proof')
                     ->label('Proof')
+                    ->acceptedFileTypes(['image/*'])
+                    ->maxSize('10240')
                     ->multiple()
                     ->openable()
                     ->downloadable()
@@ -78,6 +84,9 @@ class ReportResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+            ])
+            ->headerActions([
+                ActionsExportAction::make()->exporter(ReportExporter::class),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

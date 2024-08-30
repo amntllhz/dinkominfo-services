@@ -60,7 +60,14 @@ class RequestSubmissionResource extends Resource
                             Forms\Components\Select::make('service_id')
                                 ->label('Layanan')
                                 ->relationship('service', 'name')
-                                ->required(),
+                                ->required()
+                                ->reactive()
+                                ->afterStateUpdated(function ($state, callable $set) {
+                                    $slug = \App\Models\Service::find($state)?->slug;
+                                    $set('service_slug', $slug);
+                                }),
+                            Forms\Components\Hidden::make('service_slug')
+                                ->reactive(),
                         ]),
 
                     Forms\Components\Wizard\Step::make('Form Pengajuan')
@@ -90,13 +97,20 @@ class RequestSubmissionResource extends Resource
                                         ->label('Documents Aplikasi')
                                         ->openable()
                                         ->downloadable()
+                                        ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])
+                                        ->maxSize('10240')
                                         ->required()
                                         ->columnSpan(1),
                                     Textarea::make('add_inform')
                                         ->label('Keterangan Lainnya')
                                         ->columnSpan(1),
                                 ])
-                                ->visible(fn(Get $get) => $get('service_id') == 3)
+                                ->visible(
+                                    fn(Get $get, $record) =>
+                                    $record
+                                        ? str_contains(strtolower($record->service->slug), 'domain')
+                                        : str_contains(strtolower($get('service_slug')), 'domain')
+                                )
                                 ->columnSpan('full'),
 
                             Group::make()
@@ -111,31 +125,55 @@ class RequestSubmissionResource extends Resource
                                         ->label('OS')
                                         ->required()
                                         ->columnSpan(1),
-                                    TextInput::make('cpu')
-                                        ->label('CPU')
+
+                                    Select::make('cpu')
+                                        ->label('Ukuran CPU')
+                                        ->options([
+                                            '2 Core' => '2 Core',
+                                            '4 Core' => '4 Core',
+                                            '8 Core' => '8 Core',
+                                        ])
                                         ->required()
                                         ->columnSpan(1),
-                                    TextInput::make('ram')
-                                        ->label('RAM')
+                                    Select::make('storage')
+                                        ->label('Ukuran Storage')
+                                        ->options([
+                                            '100 GB' => '100 GB',
+                                            '200 GB' => '200 GB',
+                                            '400 GB' => '400 GB',
+                                        ])
                                         ->required()
-                                        ->maxLength(255)
                                         ->columnSpan(1),
-                                    TextInput::make('storage')
-                                        ->label('Storage')
+                                    Select::make('ram')
+                                        ->label('Ukuran RAM')
+                                        ->options([
+                                            '2 GB' => '2 GB',
+                                            '4 GB' => '4 GB',
+                                            '8 GB' => '8 GB',
+                                            '16 GB' => '16 GB',
+                                            '32 GB' => '32 GB',
+                                        ])
                                         ->required()
-                                        ->maxLength(255)
                                         ->columnSpan(1),
+
                                     FileUpload::make('document')
                                         ->label('Documents Permohonan')
                                         ->openable()
                                         ->downloadable()
+                                        ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])
+                                        ->maxSize('10240')
                                         ->required()
                                         ->columnSpan(1),
                                     Textarea::make('add_inform')
                                         ->label('Keterangan Lainnya')
                                         ->columnSpan(1),
                                 ])
-                                ->visible(fn(Get $get) => $get('service_id') == 1)
+                                ->visible(
+                                    fn(Get $get, $record) =>
+                                    $record
+                                        ? str_contains(strtolower($record->service->slug), 'vps')
+                                        : str_contains(strtolower($get('service_slug')), 'vps')
+                                )
                                 ->columnSpan('full'),
 
                             Group::make()
@@ -146,13 +184,40 @@ class RequestSubmissionResource extends Resource
                                         ->required()
                                         ->maxLength(255)
                                         ->columnSpan(1),
-                                    TextInput::make('storage')
-                                        ->label('Storage')
-                                        ->maxLength(255)
+                                    Select::make('cpu')
+                                        ->label('Ukuran CPU')
+                                        ->options([
+                                            '2 Core' => '2 Core',
+                                            '4 Core' => '4 Core',
+                                            '8 Core' => '8 Core',
+                                        ])
+                                        ->required()
+                                        ->columnSpan(1),
+                                    Select::make('storage')
+                                        ->label('Ukuran Storage')
+                                        ->options([
+                                            '100 GB' => '100 GB',
+                                            '200 GB' => '200 GB',
+                                            '400 GB' => '400 GB',
+                                        ])
+                                        ->required()
+                                        ->columnSpan(1),
+                                    Select::make('ram')
+                                        ->label('Ukuran RAM')
+                                        ->options([
+                                            '2 GB' => '2 GB',
+                                            '4 GB' => '4 GB',
+                                            '8 GB' => '8 GB',
+                                            '16 GB' => '16 GB',
+                                            '32 GB' => '32 GB',
+                                        ])
+                                        ->required()
                                         ->columnSpan(1),
                                     FileUpload::make('document')
                                         ->label('Documents Permohonan')
                                         ->required()
+                                        ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])
+                                        ->maxSize('10240')
                                         ->openable()
                                         ->downloadable()
                                         ->columnSpan(1),
@@ -160,13 +225,23 @@ class RequestSubmissionResource extends Resource
                                         ->label('Keterangan Lainnya')
                                         ->columnSpan(1),
                                 ])
-                                ->visible(fn(Get $get) => $get('service_id') == 2)
+                                ->visible(
+                                    fn(Get $get, $record) =>
+                                    $record
+                                        ? str_contains(strtolower($record->service->slug), 'hosting')
+                                        : str_contains(strtolower($get('service_slug')), 'hosting')
+                                )
                                 ->columnSpan('full'),
 
 
                             Group::make()
                                 ->relationship('reqDetailClearances')
                                 ->schema([
+                                    TextInput::make('title_req')
+                                        ->label('Judul Permohonan')
+                                        ->required()
+                                        ->maxLength(255)
+                                        ->columnSpan(1),
                                     TextArea::make('purpose')
                                         ->label('Tujuan Pengadaan Clearance')
                                         ->required()
@@ -174,6 +249,8 @@ class RequestSubmissionResource extends Resource
                                     FileUpload::make('documents')
                                         ->label('Document Surat Permohonan, Proposal, dan Dokumen Pendukung')
                                         ->required()
+                                        ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])
+                                        ->maxSize('10240')
                                         ->openable()
                                         ->downloadable()
                                         ->multiple(),
@@ -181,7 +258,43 @@ class RequestSubmissionResource extends Resource
                                         ->label('Keterangan Lainnya')
                                         ->columnSpan(1),
                                 ])
-                                ->visible(fn(Get $get) => $get('service_id') == 4)
+                                ->visible(
+                                    fn(Get $get, $record) =>
+                                    $record
+                                        ? str_contains(strtolower($record->service->slug), 'clearance')
+                                        : str_contains(strtolower($get('service_slug')), 'clearance')
+                                )
+                                ->columnSpan('full'),
+
+                            Group::make()
+                                ->relationship('reqDetailOthers')
+                                ->schema([
+                                    TextArea::make('purpose')
+                                        ->label('Tujuan Pengadaan Clearance')
+                                        ->required()
+                                        ->maxLength(255),
+                                    FileUpload::make('documents')
+                                        ->label('Document Permohonan')
+                                        ->required()
+                                        ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])
+                                        ->maxSize('10240')
+                                        ->openable()
+                                        ->downloadable()
+                                        ->multiple(),
+                                    Textarea::make('add_inform')
+                                        ->label('Keterangan Lainnya')
+                                        ->columnSpan(1),
+                                ])
+                                ->visible(function (Get $get, $record = null) {
+                                    $slug = $record ? ($record->service->slug ?? '') : ($get('service_slug') ?? '');
+                                    $slug = strtolower($slug);
+                                    $services = ['vps', 'domain', 'hosting', 'clearance'];
+
+                                    // Mengembalikan true jika slug TIDAK mengandung salah satu dari layanan yang disebutkan
+                                    return !collect($services)->contains(function ($service) use ($slug) {
+                                        return str_contains($slug, $service);
+                                    });
+                                })
                                 ->columnSpan('full'),
 
                         ]),

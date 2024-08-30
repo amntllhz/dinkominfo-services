@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Str;
 
 class RequestSubmission extends Model
@@ -61,5 +62,10 @@ class RequestSubmission extends Model
     public function reqDetailHostings(): HasOne
     {
         return $this->hasOne(ReqDetailHosting::class);
+    }
+
+    public function reqDetailOthers(): HasOne
+    {
+        return $this->hasOne(ReqDetailOther::class);
     }
 }

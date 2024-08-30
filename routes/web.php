@@ -1,6 +1,7 @@
 <?php
 
 use App\Filament\Resources\RequestSubmissionResource\Pages\ViewCustomPage;
+use App\Http\Controllers\ContributorController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\InstansiController;
 use App\Http\Controllers\ReportController;
@@ -21,6 +22,9 @@ Route::get('/cek-status', [FrontController::class, 'cekStatus'])
 
 Route::post('/cek-status', [FrontController::class, 'cekStatus_details'])
     ->name('front.status.details');
+
+Route::get('/contributor', [FrontController::class, 'contributor'])
+    ->name('front.contributor');
 
 Route::get('/service/{slug}', [ServiceController::class, 'viewForm'])
     ->name('form.layanan');

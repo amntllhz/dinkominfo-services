@@ -66,6 +66,14 @@ class ReqSubmission extends FormRequest
                     $rules['os'] = 'required|string|max:255';
                 }
                 break;
+            default:
+                $rules += [
+                    'purpose' => 'required|string',
+                    'add_inform' => 'required|string|max:255',
+                    'documents' => 'required|array',
+                    'documents.*' => 'file|mimes:pdf,doc,docx|max:10240',
+                ];
+                break;
         }
         return $rules;
     }

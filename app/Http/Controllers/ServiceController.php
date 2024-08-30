@@ -77,6 +77,7 @@ class ServiceController extends Controller
 
             $submission_id = $newRequestSubmission->id;
 
+
             switch ($service->slug) {
                 case str_contains($service->slug, 'domain'):
                     $domainData = [
@@ -139,6 +140,26 @@ class ServiceController extends Controller
                     }
 
                     $newRequestSubmission->reqDetailVPSs()->create($vpsData);
+                    break;
+                default:
+                    $defaultData = [
+                        'request_submission_id' => $submission_id,
+                        'purpose' => $validated['purpose'],
+                        'add_inform' => $validated['add_inform'],
+                    ];
+
+                    // Handle multiple file uploads
+                    if ($request->hasFile('documents')) {
+                        $documentPaths = [];
+                        foreach ($request->file('documents') as $document) {
+                            $path = $document->store('documents/other', 'public');
+                            $documentPaths[] = $path;
+                        }
+                        // Store file paths as JSON array
+                        $defaultData['documents'] = $documentPaths;
+                    }
+
+                    $newRequestSubmission->reqDetailOthers()->create($defaultData);
                     break;
             }
         });

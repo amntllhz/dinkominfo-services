@@ -6,19 +6,32 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ReqDetailHosting extends Model
+class ReqDetailOther extends Model
 {
-    use HasFactory, SoftDeletes;
+    use
+        HasFactory,
+        SoftDeletes;
 
     protected $fillable = [
         'request_submission_id',
-        'storage',
-        'ram',
-        'cpu',
         'purpose',
-        'document',
+        'documents',
         'add_inform',
     ];
+
+    protected $casts = [
+        'documents' => 'array',
+    ];
+
+    public function getDocumentsAttribute($value)
+    {
+        return json_decode($value, true);
+    }
+
+    public function setDocumentsAttribute($value)
+    {
+        $this->attributes['documents'] = json_encode($value);
+    }
 
     public function requestSubmission()
     {
