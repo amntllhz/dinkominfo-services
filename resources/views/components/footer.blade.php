@@ -149,6 +149,11 @@
             Laporkan Penyalahgunaan
             </a>
         </li>
+        <li>
+            <a href="{{ route('front.contributor') }}" class="text-base text-gray-500 hover:text-violet-700 sm:text-sm">
+            Kontributor
+            </a>
+        </li>
         </ul>
     </div>
     </div>

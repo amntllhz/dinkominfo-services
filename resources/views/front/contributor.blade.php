@@ -10,7 +10,12 @@
     </div>
     
     <div class="text-base text-gray-500 text-justify mb-6 max-w-5xl mx-auto">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae cupiditate autem quam aperiam hic dignissimos voluptatum ea excepturi. Eaque expedita illo voluptatum, sapiente ipsam vel maiores hic et reprehenderit dolore fugiat eum a nobis similique, quod cupiditate aliquid saepe rerum ea iusto deleniti sed perferendis voluptate totam! Distinctio molestias voluptate repellat porro sint et pariatur vel enim saepe fugit mollitia inventore neque dolorem dolor magni consequatur blanditiis minus, tempore reiciendis perspiciatis commodi minima tenetur doloremque eligendi. Maiores error suscipit atque optio sequi maxime repellendus sit saepe, voluptate autem ex impedit! Voluptas beatae dolor commodi consequatur sunt explicabo placeat expedita? Esse.</p>
+        <p>Selamat datang di halaman Contributors! Kami adalah mahasiswa peserta Praktik Kerja Lapangan (PKL) di Dinas Komunikasi dan Informatika (Dinkominfo) Kabupaten Pekalongan tahun 2024.</p>
+        <p class="py-4">
+        Kami adalah mahasiswa PKL di Dinas Komunikasi dan Informatika Kabupaten Pekalongan tahun 2024. Selama PKL, kami terlibat dalam pengembangan web "Portal Layanan Digitalisasi OPD," pembuatan web buku tamu, dan perancangan desain grafis untuk informasi digital. Pengalaman ini memberi kami kesempatan untuk menerapkan ilmu kuliah dalam proyek nyata yang berdampak pada masyarakat, sekaligus belajar teknologi terkini, kerja tim, dan manajemen proyek. Kami berterima kasih kepada Dinkominfo Kabupaten Pekalongan atas kesempatan ini dan bangga berkontribusi dalam digitalisasi pelayanan publik.
+        </p>
+        <p class="text-end py-6">Tim PKL Dinkominfo Kabupaten Pekalongan 2024</p>
+          
     </div>
     <x-contributor :interns="$interns"></x-contributor>
 
