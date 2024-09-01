@@ -85,9 +85,6 @@ class ReportResource extends Resource
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
-            ->headerActions([
-                ActionsExportAction::make()->exporter(ReportExporter::class),
-            ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

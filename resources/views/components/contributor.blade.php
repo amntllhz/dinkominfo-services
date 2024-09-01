@@ -46,7 +46,7 @@
                         <div class="mt-2">
                             <p class="text-sm text-gray-500">{{ $intern['major'] }}</p>                          
                             <p class="text-sm text-gray-500">{{ $intern['university'] }}</p>                            
-                            <p class="text-sm text-gray-500">{{ $intern['email'] }}</p>                            
+                            <a href="mailto:{{ $intern['email'] }}" class="text-sm text-violet-500">{{ $intern['email'] }}</a>                            
                         </div>                                                                               
                     </div> 
                 </div>

@@ -72,7 +72,7 @@ class FrontController extends Controller
                 'university' => 'Universitas A',
                 'email' => 'a@gmail.com',
                 'avatar' => 'avatar.png',
-                'real' => 'real.png',
+                'real' => 'real.jpg',
             ],
             [
                 'fullname' => 'Jane Smith',
@@ -82,7 +82,7 @@ class FrontController extends Controller
                 'university' => 'Universitas B',
                 'email' => 'a@gmail.com',
                 'avatar' => 'avatar.png',
-                'real' => 'real.png',
+                'real' => 'real.jpg',
             ],
             [
                 'fullname' => 'Mike Johnson',
@@ -92,17 +92,17 @@ class FrontController extends Controller
                 'university' => 'Universitas C',
                 'email' => 'a@gmail.com',
                 'avatar' => 'avatar.png',
-                'real' => 'real.png',
+                'real' => 'real.jpg',
             ],
             [
                 'fullname' => 'John Doe',
                 'name' => 'John',
-                'role' => 'Frontend Developer',
+                'role' => 'Backend Developer',
                 'major' => 'Informatika',
                 'university' => 'Universitas A',
                 'email' => 'a@gmail.com',
                 'avatar' => 'avatar.png',
-                'real' => 'real.png',
+                'real' => 'real.jpg',
             ],
             [
                 'fullname' => 'Jane Smith',
@@ -112,7 +112,7 @@ class FrontController extends Controller
                 'university' => 'Universitas B',
                 'email' => 'a@gmail.com',
                 'avatar' => 'avatar.png',
-                'real' => 'real.png',
+                'real' => 'real.jpg',
             ],
             [
                 'fullname' => 'Mike Johnson',
@@ -122,7 +122,7 @@ class FrontController extends Controller
                 'university' => 'Universitas C',
                 'email' => 'a@gmail.com',
                 'avatar' => 'avatar.png',
-                'real' => 'real.png',
+                'real' => 'real.jpg',
             ],
         ];
 
