@@ -9,6 +9,7 @@ use App\Http\Requests\RequestHosting;
 use App\Http\Requests\RequestReport;
 use App\Http\Requests\RequestSubmission as RequestsRequestSubmission;
 use App\Http\Requests\RequestVPS;
+use App\Mail\SendEmail;
 use App\Models\Instansi;
 use App\Models\Report;
 use App\Models\ReqDetailVPS;
@@ -16,6 +17,7 @@ use App\Models\RequestSubmission;
 use App\Models\Service;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ServiceController extends Controller
 {
@@ -170,6 +172,15 @@ class ServiceController extends Controller
     public function success($submission_id)
     {
         $submission = RequestSubmission::findOrFail($submission_id);
+
+        Mail::to($submission->email)->send(new SendEmail(
+            [
+                'name' => $submission->applicant,
+                'service' => $submission->service->name,
+                'receipt' => $submission->receipt,
+                'status' => $submission->status,
+            ]
+        ));
         return view('forms.success-service', compact('submission'));
     }
 }
