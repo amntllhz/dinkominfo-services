@@ -1,5 +1,5 @@
 <!-- navbar -->
-    <nav class="flex mx-auto max-w-6xl mt-10 sm:max-w-xs items-center justify-between md:max-w-xl">
+    <nav id="navbar" class="flex mx-auto max-w-6xl mt-10 sm:max-w-xs items-center justify-between md:max-w-xl sticky top-3 z-50 transition-all duration-300">
     <a href="{{ route('front.index') }}">
         <x-logo-nav></x-logo-nav>
     </a>

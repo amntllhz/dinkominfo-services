@@ -157,68 +157,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// document.addEventListener("DOMContentLoaded", function () {
-//     const instansiSelect = document.getElementById("instansi");
-//     const newInstansiForm = document.getElementById("newInstansiForm");
-//     const newInstansiName = document.getElementById("newInstansiName");
-//     const newInstansiAddress = document.getElementById("newInstansiAddress");
-//     const addNewInstansiButton = document.getElementById("addNewInstansi");
-
-//     instansiSelect.addEventListener("change", function () {
-//         if (this.value === "other") {
-//             newInstansiForm.classList.remove("hidden");
-//         } else {
-//             newInstansiForm.classList.add("hidden");
-//         }
-//     });
-
-//     addNewInstansiButton.addEventListener("click", function () {
-//         if (newInstansiName.value && newInstansiAddress.value) {
-//             fetch("/instansi", {
-//                 method: "POST",
-//                 headers: {
-//                     "Content-Type": "application/json",
-//                     "X-CSRF-TOKEN": document
-//                         .querySelector('meta[name="csrf-token"]')
-//                         .getAttribute("content"),
-//                 },
-//                 body: JSON.stringify({
-//                     name: newInstansiName.value,
-//                     address: newInstansiAddress.value,
-//                 }),
-//             })
-//                 .then((response) => response.json())
-//                 .then((data) => {
-//                     // Buat opsi baru
-//                     const newOption = new Option(data.name, data.id);
-
-//                     // Dapatkan indeks opsi "Lainnya"
-//                     const otherOptionIndex = Array.from(
-//                         instansiSelect.options
-//                     ).findIndex((option) => option.value === "other");
-
-//                     // Masukkan opsi baru tepat sebelum opsi "Lainnya"
-//                     instansiSelect.add(
-//                         newOption,
-//                         instansiSelect.options[otherOptionIndex]
-//                     );
-
-//                     // Pilih opsi baru
-//                     instansiSelect.value = data.id;
-
-//                     // Sembunyikan form
-//                     newInstansiForm.classList.add("hidden");
-
-//                     // Reset form fields
-//                     newInstansiName.value = "";
-//                     newInstansiAddress.value = "";
-//                 })
-//                 .catch((error) => {
-//                     console.error("Error:", error);
-//                     alert("Terjadi kesalahan saat menambahkan instansi baru.");
-//                 });
-//         } else {
-//             alert("Harap isi nama dan alamat instansi baru.");
-//         }
-//     });
-// });
+// JavaScript untuk menambahkan kelas saat scroll
+window.addEventListener("scroll", function () {
+    const navbar = document.getElementById("navbar");
+    if (window.scrollY > 0) {
+        navbar.classList.add("navbar-scroll"); // Tambahkan kelas saat scroll
+    } else {
+        navbar.classList.remove("navbar-scroll"); // Hapus kelas saat tidak scroll
+    }
+});

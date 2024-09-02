@@ -13,7 +13,7 @@ class Service extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'slug', 'icon', 'description', 'category_id'];
+    protected $fillable = ['name', 'slug', 'tagline', 'icon', 'description', 'category_id'];
 
     public function setNameAttribute($value): void
     {

@@ -28,6 +28,10 @@ class ServiceResource extends Resource
                     ->required()
                     ->placeholder('Enter the service name')
                     ->autofocus(),
+                Forms\Components\TextInput::make('tagline')
+                    ->label('Service Tagline')
+                    ->required()
+                    ->autofocus(),
                 Forms\Components\TextInput::make('description')
                     ->label('Service Description')
                     ->required()
