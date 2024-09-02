@@ -20,3 +20,11 @@
 </section>
 
 @endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        initFlowbite();
+    });
+</script>
+@endsection
