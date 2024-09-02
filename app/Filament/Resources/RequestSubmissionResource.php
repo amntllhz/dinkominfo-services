@@ -5,9 +5,12 @@ namespace App\Filament\Resources;
 use App\Filament\Actions\CustomViewAction;
 use App\Filament\Resources\RequestSubmissionResource\Pages;
 use App\Filament\Resources\RequestSubmissionResource\RelationManagers;
+use App\Mail\UpdateStatusMail;
 use App\Models\RequestSubmission;
+use Carbon\Carbon;
 use Filament\Actions\Action;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -19,8 +22,11 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\View;
 use Filament\Forms\Get;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Mail;
 
 class RequestSubmissionResource extends Resource
 {
@@ -325,6 +331,10 @@ class RequestSubmissionResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Tanggal Pengajuan')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('applicant')
                     ->label('Pemohon')
                     ->searchable()
@@ -338,13 +348,55 @@ class RequestSubmissionResource extends Resource
                 Tables\Columns\TextColumn::make('status')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('receipt')
-                    ->searchable()
-                    ->sortable(),
 
             ])
             ->filters([
-                //
+
+                SelectFilter::make('period')
+                    ->options([
+                        'today' => 'Hari ini',
+                        'this_week' => 'Minggu ini',
+                        'this_month' => 'Bulan ini',
+                    ])
+                    ->query(function (Builder $query, string $value = null): Builder {
+                        if ($value === null) {
+                            return $query; // No filter applied
+                        }
+
+                        switch ($value) {
+                            case 'today':
+                                return $query->whereDate('created_at', Carbon::today());
+                            case 'this_week':
+                                return $query->whereBetween('created_at', [
+                                    Carbon::now()->startOfWeek(),
+                                    Carbon::now()->endOfWeek(),
+                                ]);
+                            case 'this_month':
+                                return $query->whereBetween('created_at', [
+                                    Carbon::now()->startOfMonth(),
+                                    Carbon::now()->endOfMonth(),
+                                ]);
+                            default:
+                                return $query; // Fallback if an unknown value is selected
+                        }
+                    })
+                    ->label('Filter Periodik'),
+
+                SelectFilter::make('status')
+                    ->label('Status')
+                    ->multiple()
+                    ->options([
+                        'Pending' => 'Pending',
+                        'In Progress' => 'In Progress',
+                        'Rejected' => 'Rejected',
+                        'Completed' => 'Completed',
+                    ]),
+
+                // SelectFilter::make('service_id')
+                //     ->label('Layanan')
+                //     ->relationship('service', 'name')
+                //     ->multiple(),
+
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -376,6 +428,15 @@ class RequestSubmissionResource extends Resource
                             'status' => $data['status'],
                             'message' => $data['message'],
                         ]);
+                        Mail::to($record->email)->send(new UpdateStatusMail(
+                            [
+                                'name' => $record->applicant,
+                                'service' => $record->service->name,
+                                'receipt' => $record->receipt,
+                                'status' => $data['status'],
+                                'message' => $data['message'],
+                            ]
+                        ));
                     })
                     ->modalHeading('Update Status Pengajuan')
                     ->modalDescription('Status dan pesan saat ini ditampilkan di atas. Pilih status baru dan tambahkan pesan jika diperlukan.')

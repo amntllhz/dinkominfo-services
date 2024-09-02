@@ -19,7 +19,7 @@
 
         <div class="flex flex-col gap-y-2 sm:text-center md:text-center">
         <h1 class="font-clash text-6xl font-extrabold text-indigo-950 leading-none sm:text-4xl md:text-5xl">Portal Layanan<br>Digitalisasi OPD</h1>
-        <p class="max-w-md text-base leading-loose text-gray-500 sm:text-xs sm:max-w-xs">Pengajuan Clearance, Server, Perangkat, serta Dukungan untuk Optimalisasi  Kinerja dan Efisiensi bagi OPD Kabupaten Pekalongan</p>
+        <p class="max-w-md text-base leading-loose text-gray-500 sm:text-xs sm:max-w-xs">Pengajuan Clearance, Server, Perangkat, serta Dukungan untuk Optimalisasi  Kinerja dan Efisiensi bagi Organisasi Perangkat Daerah (OPD) Kabupaten Pekalongan</p>
         </div>
         <a href="{{ route('front.index') }}#services" class=" w-fit text-base bg-violet-700 text-white py-2 rounded-full font-semibold px-10 hover:bg-indigo-950 transition-all ease-in-out duration-300 sm:mx-auto md:mx-auto">Mulai</a>
     </div>

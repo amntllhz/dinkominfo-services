@@ -13,6 +13,8 @@ class Instansi extends Model
     protected $fillable = [
         'name',
         'address',
+        'sector',
+        'phone',
     ];
 
     public function reports()

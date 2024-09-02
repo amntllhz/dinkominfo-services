@@ -122,8 +122,26 @@ class ServiceController extends Controller
                     break;
 
                 case str_contains($service->slug, 'vps'):
-                case str_contains($service->slug, 'hosting'):
                     $vpsData = [
+                        'request_submission_id' => $submission_id,
+                        'cpu' => $validated['cpu'],
+                        'ram' => $validated['ram'],
+                        'storage' => $validated['storage'],
+                        'os' => $validated['os'],
+                        'purpose' => $validated['purpose'],
+                        'add_inform' => $validated['add_inform'],
+                    ];
+
+                    if ($request->hasFile('document')) {
+                        $docPath = $request->file('document')->store('documents/vps', 'public');
+                        $vpsData['document'] = $docPath;
+                    }
+
+                    $newRequestSubmission->reqDetailVPSs()->create($vpsData);
+                    break;
+
+                case str_contains($service->slug, 'hosting'):
+                    $hostingData = [
                         'request_submission_id' => $submission_id,
                         'cpu' => $validated['cpu'],
                         'ram' => $validated['ram'],
@@ -133,15 +151,11 @@ class ServiceController extends Controller
                     ];
 
                     if ($request->hasFile('document')) {
-                        $docPath = $request->file('document')->store('documents/' . $slug, 'public');
-                        $vpsData['document'] = $docPath;
+                        $docPath = $request->file('document')->store('documents/hosting' . $slug, 'public');
+                        $hostingData['document'] = $docPath;
                     }
 
-                    if (str_contains($service->slug, 'vps')) {
-                        $vpsData['os'] = $validated['os'];
-                    }
-
-                    $newRequestSubmission->reqDetailVPSs()->create($vpsData);
+                    $newRequestSubmission->reqDetailHostings()->create($hostingData);
                     break;
                 default:
                     $defaultData = [
