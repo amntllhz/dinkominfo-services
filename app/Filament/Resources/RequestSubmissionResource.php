@@ -345,6 +345,9 @@ class RequestSubmissionResource extends Resource
                 Tables\Columns\TextColumn::make('instansi.name')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('receipt')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('status')
                     ->searchable()
                     ->sortable(),

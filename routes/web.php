@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontController::class, 'index'])
     ->name('front.index');
 
+Route::get('/guide', [FrontController::class, 'guide'])
+    ->name('front.guide');
 
 Route::get('/services', [FrontController::class, 'services'])
     ->name('front.services');

@@ -41,10 +41,14 @@
                     </div>
                 </li>
                 @if($details->message != null)
-                    <li class="inline-flex items-center gap-x-2 py-3 px-4 text-sm border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg">
+                    <li class=" mt-7 inline-flex items-center gap-x-2 py-3 px-4 text-sm border text-gray-800 first:rounded-t-lg first:mt-0 last:rounded-b-lg">
                         <div class="flex items-center justify-between w-full">
                         <span class="font-semibold">Pesan</span>
-                        <span>{{ $details->message }}</span>
+                    </li>    
+                    <li class="inline-flex items-center gap-x-2 py-3 px-4 text-sm border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg">
+                        <div class="flex items-center justify-between w-full">
+                        <p class="text-justify">{{ $details->message }}</p>
+                        
                         </div>
                     </li>                
                 @endif

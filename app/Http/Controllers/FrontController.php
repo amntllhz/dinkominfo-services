@@ -129,4 +129,9 @@ class FrontController extends Controller
         // dd($interns);
         return view('front.contributor', compact('interns'));
     }
+
+    public function guide()
+    {
+        return view('front.guide');
+    }
 }
