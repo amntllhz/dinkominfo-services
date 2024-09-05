@@ -7,6 +7,7 @@ use App\Filament\Resources\RequestSubmissionResource\Pages;
 use App\Filament\Resources\RequestSubmissionResource\RelationManagers;
 use App\Mail\UpdateStatusMail;
 use App\Models\RequestSubmission;
+use App\Models\User;
 use Carbon\Carbon;
 use Filament\Actions\Action;
 use Filament\Forms;
@@ -432,7 +433,9 @@ class RequestSubmissionResource extends Resource
                             'status' => $data['status'],
                             'message' => $data['message'],
                         ]);
-                        Mail::to($record->email)->send(new UpdateStatusMail(
+
+                        $adminEmail = User::all()->pluck('email')->toArray();
+                        Mail::to($adminEmail)->send(new UpdateStatusMail(
                             [
                                 'name' => $record->applicant,
                                 'service' => $record->service->name,
@@ -441,6 +444,28 @@ class RequestSubmissionResource extends Resource
                                 'message' => $data['message'],
                             ]
                         ));
+
+                        $userEmail = $record->email;
+                        Mail::to($userEmail)->send(new UpdateStatusMail(
+                            [
+                                'name' => $record->applicant,
+                                'service' => $record->service->name,
+                                'receipt' => $record->receipt,
+                                'status' => $data['status'],
+                                'message' => $data['message'],
+                            ]
+                        ));
+
+
+                        // Mail::to($record->email)->send(new UpdateStatusMail(
+                        //     [
+                        //         'name' => $record->applicant,
+                        //         'service' => $record->service->name,
+                        //         'receipt' => $record->receipt,
+                        //         'status' => $data['status'],
+                        //         'message' => $data['message'],
+                        //     ]
+                        // ));
                     })
                     ->modalHeading('Update Status Pengajuan')
                     ->modalDescription('Status dan pesan saat ini ditampilkan di atas. Pilih status baru dan tambahkan pesan jika diperlukan.')
