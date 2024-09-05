@@ -6,7 +6,7 @@
 <section class="max-w-6xl mx-auto py-12 md:max-w-lg sm:max-w-xs">
     <div class="flex flex-col gap-y-2 text-center mb-8">
         <h3 class="text-5xl text-indigo-950 font-clash font-bold sm:text-3xl">Contributors</h3>
-        <p class="text-base font-semibold leading-loose text-violet-700 sm:text-xs sm:py-1 sm:px-2 bg-violet-100 rounded-full w-fit px-8 mx-auto md:text-sm md:py-1">Praktik Kerja Lapangan Dinkominfo Kabupaten Pekalongan 2024</p>
+        <p class="text-base font-semibold leading-loose text-primary sm:text-xs sm:py-1 sm:px-2 bg-blue-100 rounded-full w-fit px-8 mx-auto md:text-sm md:py-1">Praktik Kerja Lapangan Dinkominfo Kabupaten Pekalongan 2024</p>
     </div>
     
     <div class="text-base text-gray-500 text-justify mb-6 max-w-5xl mx-auto">

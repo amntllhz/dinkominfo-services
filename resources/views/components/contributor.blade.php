@@ -10,7 +10,7 @@
         <p class="text-sm text-slate-600 py-1 px-4">
             {{ $intern['name'] }}
         </p>
-        <button data-modal-target="default-modal-{{ $index }}" data-modal-toggle="default-modal-{{ $index }}" type="button" class="text-sm text-white bg-violet-700 py-1 px-4 rounded-full">
+        <button data-modal-target="default-modal-{{ $index }}" data-modal-toggle="default-modal-{{ $index }}" type="button" class="text-sm text-white bg-primary py-1 px-4 rounded-full">
             Lihat Profil
         </button>
     </div>
@@ -39,23 +39,23 @@
                 <!-- Modal body -->
                 <div class="flex p-6 justify-between sm:flex-col">
                     <div class="flex flex-row w-fit sm:flex-col sm:mx-auto">
-                        <img class="h-[150px] mb-4 p-4 bg-violet-100 rounded-xl sm:mb-2" src="{{ asset('assets/images/interns/real-pic/' . $intern['real']) }}" alt="{{ $intern['fullname'] }}">
+                        <img class="h-[150px] mb-4 p-4 bg-blue-100 rounded-xl sm:mb-2" src="{{ asset('assets/images/interns/real-pic/' . $intern['real']) }}" alt="{{ $intern['fullname'] }}">
                     </div>                                                                        
 
                     <div class="flex flex-col text-left w-full max-w-xs pl-2">
                         <h2 class="text-2xl font-bold text-indigo-950 sm:text-center sm:mb-1">{{ $intern['fullname'] }}</h2>
-                        <span class="inline-flex items-center rounded-md bg-violet-50 px-2 py-1 text-xs font-medium text-violet-700 ring-1 ring-inset ring-violet-700/10 w-fit sm:mx-auto">{{ $intern['role'] }}</span>                                                   
+                        <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/10 w-fit sm:mx-auto">{{ $intern['role'] }}</span>                                                   
                         <div class="mt-2">
                             <p class="text-sm text-gray-500">{{ $intern['major'] }}</p>                          
                             <p class="text-sm text-gray-500">{{ $intern['university'] }}</p>                            
-                            <a href="mailto:{{ $intern['email'] }}" class="text-sm text-violet-500">{{ $intern['email'] }}</a>                            
+                            <a href="mailto:{{ $intern['email'] }}" class="text-sm text-blue-500">{{ $intern['email'] }}</a>                            
                         </div>                                                                               
                     </div> 
                 </div>
                 
                 <!-- Modal footer -->
                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600 justify-end">
-                    <button data-modal-hide="default-modal-{{ $index }}" type="button" class="text-white bg-violet-700 hover:bg-indigo-950 font-semibold rounded-full text-sm px-3 py-1 text-center">Tutup</button>                        
+                    <button data-modal-hide="default-modal-{{ $index }}" type="button" class="text-white bg-primary hover:bg-indigo-950 font-semibold rounded-full text-sm px-3 py-1 text-center">Tutup</button>                        
                 </div>
             </div>
         </div>

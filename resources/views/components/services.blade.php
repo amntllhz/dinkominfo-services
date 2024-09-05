@@ -8,7 +8,7 @@
         <div class="grid grid-cols-4 sm:grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
     @foreach ($services as $service)
         <div class="w-full flex flex-col gap-y-5 bg-white rounded-2xl p-6 sm:items-center sm:text-center sm:max-w-xs sm:mx-auto">
-            <div class="bg-violet-100 rounded-xl p-2 w-fit">
+            <div class="bg-blue-100 rounded-xl p-2 w-fit">
                 <img src="{{ Storage::url($service->icon) }}" height="46px" width="46px" >
             </div>
             <div class="flex flex-col">
@@ -16,7 +16,7 @@
             <p class="text-base mt-3 leading-normal text-gray-500">{{ $service->tagline }}</p>
             </div>
             <div class="flex justify-between items-center">
-                <a href="{{ route('form.layanan', ['slug' => $service->slug]) }}" class="font-semibold text-violet-700 hover:bg-slate-200 p-2 w-fit rounded-md">Pengajuan</a>
+                <a href="{{ route('form.layanan', ['slug' => $service->slug]) }}" class="font-semibold text-primary hover:bg-slate-200 p-2 w-fit rounded-md">Pengajuan</a>
                 <p>
                 <x-heroicon-o-information-circle class="w-5 h-5 text-gray-500" data-popover-target="popover-{{ $service->id }}"/>
                 </p>

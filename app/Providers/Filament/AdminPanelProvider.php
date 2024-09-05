@@ -2,8 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\ReqServicesChart;
 use App\Filament\Widgets\ReqStatusStats;
-use App\Filament\Widgets\RequestsChart;
 use Filament\Facades\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -43,8 +43,9 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 // Widgets\AccountWidget::class,
                 // Widgets\FilamentInfoWidget::class,
-                RequestsChart::class,
+                // RequestsChart::class,
                 ReqStatusStats::class,
+                ReqServicesChart::class,
             ])
             ->middleware([
                 EncryptCookies::class,
