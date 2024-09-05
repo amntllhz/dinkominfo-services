@@ -1,7 +1,7 @@
 # eGoverse
 
 <p align="center">
-  <img src="https://github.com/drchmsyh/diger/assets/logo-nav.svg" alt="eGoverse Logos" width="50%">
+  <img src="https://raw.githubusercontent.com/drchmsyh/egoverse/de8e3ed89bbf456ea766f12ebdde46de2c6e282b/public/logo-nav.svg" alt="eGoverse Logos" width="25%">
 </p>
 
 eGoverse is an innovative OPD (Regional Apparatus Organization) Digitalization Service Portal designed to facilitate the submission of Clearance, Server, Device services, and other support to enhance the efficiency and performance of Regional Apparatus Organizations (OPD) in Pekalongan Regency. This system is built using Laravel and Tailwind CSS.
@@ -37,83 +37,71 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 ## Installation
 
-1. Clone the Repository
+### Clone the Repository
 
 ```
-# Clone this repository
 git clone [repository-url]
 
-# Navigate to the project folder
 cd egoverse
 ```
 
-2. Set Up the Laravel Environment
+### Set Up the Laravel Environment
 
 ```
-# Install the dependencies
 composer install
 
-# Duplicate the .env.example file and rename it to .env
 cp .env.example .env
 
-# Generate an application key
 php artisan key:generate
 ```
 
-3. Set Up the Database
+### Set Up the Database
 
 ```
-# Run the database migrations
 php artisan migrate
 ```
 
-4. Set Up File Storage
+### Set Up File Storage
 
 ```
-# Create the symbolic link
 php artisan storage:link
 ```
 
-5. Set Up the Frontend
+### Set Up the Frontend
 
 ```
-# Install the Node.js dependencies
 npm install
 ```
 
-6. Create Admin User
-
-To create an admin user for the Filament admin panel, run the following command:
+### Create Admin User
 
 ```
 php artisan make:filament-user
 ```
 
-7. Run the Application
+### Run the Application
 
 For development:
 
 ```
-# Run Vite development server
 npm run dev
 
 # In a separate terminal, run Laravel development server
+
 php artisan serve
 ```
 
 For production:
 
 ```
-# Build frontend assets for production
 npm run build
 
-# Run Laravel development server
+# In a separate terminal, run Laravel development server
+
 php artisan serve
 ```
 
-8. Access the Application
-
-Open your web browser and go to:
+### Access the Application
 
 ```
 http://localhost:8000
