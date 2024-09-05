@@ -15,6 +15,7 @@ use App\Models\Report;
 use App\Models\ReqDetailVPS;
 use App\Models\RequestSubmission;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -187,7 +188,18 @@ class ServiceController extends Controller
     {
         $submission = RequestSubmission::findOrFail($submission_id);
 
-        Mail::to($submission->email)->send(new SendEmail(
+        $adminEmail = User::all()->pluck('email')->toArray();
+        Mail::to($adminEmail)->send(new SendEmail(
+            [
+                'name' => $submission->applicant,
+                'service' => $submission->service->name,
+                'receipt' => $submission->receipt,
+                'status' => $submission->status,
+            ]
+        ));
+
+        $userEmail = $submission->email;
+        Mail::to($userEmail)->send(new SendEmail(
             [
                 'name' => $submission->applicant,
                 'service' => $submission->service->name,
