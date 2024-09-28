@@ -4,15 +4,15 @@
 
         <!-- badge -->
 
-        <div class="small-badge w-fit gap-x-2 flex flex-row bg-white rounded-full py-2 px-4 sm:mx-auto sm:py-1 items-center md:mx-auto">
-        <svg class="sm:w-4" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.5 22.5C18.0228 22.5 22.5 18.0228 22.5 12.5C22.5 6.97715 18.0228 2.5 12.5 2.5C6.97715 2.5 2.5 6.97715 2.5 12.5C2.5 18.0228 6.97715 22.5 12.5 22.5Z" stroke="#080C2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M8.50001 3.5H9.50001C7.55001 9.34 7.55001 15.66 9.50001 21.5H8.50001" stroke="#080C2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M15.5 3.5C17.45 9.34 17.45 15.66 15.5 21.5" stroke="#080C2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M3.5 16.5V15.5C9.34 17.45 15.66 17.45 21.5 15.5V16.5" stroke="#080C2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M3.5 9.50001C9.34 7.55001 15.66 7.55001 21.5 9.50001" stroke="#080C2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <p class="text-base font-semibold text-indigo-950 sm:text-xs md:text-sm">Dapat di akses secara Online 24 Jam</p>
+        <div class="small-badge w-fit gap-x-2 flex flex-row bg-blue-50 rounded-full py-2 px-4 sm:mx-auto sm:py-1 items-center md:mx-auto ring-2 ring-inset ring-prim/10">
+            <svg class="sm:w-4" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.0001 18.3334C14.6025 18.3334 18.3334 14.6024 18.3334 10C18.3334 5.39765 14.6025 1.66669 10.0001 1.66669C5.39771 1.66669 1.66675 5.39765 1.66675 10C1.66675 14.6024 5.39771 18.3334 10.0001 18.3334Z" stroke="#1D4ED8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6.66667 2.5H7.5C5.875 7.36667 5.875 12.6333 7.5 17.5H6.66667" stroke="#1D4ED8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12.5 2.5C14.125 7.36667 14.125 12.6333 12.5 17.5" stroke="#1D4ED8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2.5 13.3333V12.5C7.36667 14.125 12.6333 14.125 17.5 12.5V13.3333" stroke="#1D4ED8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2.5 7.5C7.36667 5.875 12.6333 5.875 17.5 7.5" stroke="#1D4ED8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>              
+            <p class="text-sm font-semibold text-primary sm:text-xs">Dapat di akses secara Online 24 Jam</p>
         </div>
 
         <!-- HeadLine -->

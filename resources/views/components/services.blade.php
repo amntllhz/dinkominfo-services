@@ -7,7 +7,7 @@
 
         <div class="grid grid-cols-4 sm:grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
     @foreach ($services as $service)
-        <div class="w-full flex flex-col gap-y-5 bg-white rounded-2xl p-6 sm:items-center sm:text-center sm:max-w-xs sm:mx-auto">
+        <div class="w-full ring-2 ring-inset ring-primary/10 flex flex-col gap-y-6 bg-white rounded-2xl p-6 sm:items-center sm:text-center sm:max-w-xs sm:mx-auto">
             <div class="bg-blue-100 rounded-xl p-2 w-fit">
                 <img src="{{ Storage::url($service->icon) }}" height="46px" width="46px" >
             </div>
